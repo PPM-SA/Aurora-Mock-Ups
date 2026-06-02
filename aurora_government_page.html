@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurora Office Furniture — Government & Public Sector</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#334155;font-size:14px;line-height:1.6}
+.wrap{max-width:1100px;margin:0 auto;background:#fff;box-shadow:0 0 0 1px #e2e8f0}
+
+/* NAV */
+.nav{background:#121e21;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{color:#fff;font-size:14px;font-weight:600;letter-spacing:.02em}
+.nav-logo span{color:#6f969b}
+.nav-links{display:flex;gap:28px}
+.nav-link{color:rgba(255,255,255,.5);font-size:12px;text-decoration:none;transition:color .15s}
+.nav-link:hover{color:rgba(255,255,255,.85)}
+.nav-link.active{color:#e8a87c;font-weight:500}
+.nav-cta{background:#e8a87c;color:#121e21;font-size:12px;font-weight:600;padding:8px 18px;border-radius:6px;text-decoration:none;transition:opacity .15s}
+.nav-cta:hover{opacity:.88}
+
+/* INDUSTRY TABS */
+.ind-bar{background:#f1f5f9;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;gap:4px;overflow-x:auto}
+.ind-tab{padding:12px 16px;font-size:12px;color:#64748b;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .15s;background:transparent;border-top:none;border-left:none;border-right:none;font-family:'Inter',sans-serif}
+.ind-tab:hover{color:#334155}
+.ind-tab.active{color:#121e21;border-bottom-color:#121e21;font-weight:500}
+
+/* HERO */
+.hero{background:#121e21;padding:52px 32px 44px}
+.hero-pill{display:inline-flex;align-items:center;gap:6px;background:#1c424d;color:#6f969b;font-size:10px;font-weight:600;padding:5px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase}
+.hero h1{color:#fff;font-size:32px;font-weight:600;line-height:1.25;margin-bottom:14px;max-width:600px}
+.hero p{color:rgba(255,255,255,.62);font-size:14px;line-height:1.7;max-width:520px;margin-bottom:28px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:#e8a87c;color:#121e21;font-size:13px;font-weight:600;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .15s}
+.btn-primary:hover{opacity:.88}
+.btn-ghost{background:transparent;color:#e8a87c;font-size:13px;font-weight:500;padding:12px 24px;border-radius:8px;border:1.5px solid #e8a87c;cursor:pointer;text-decoration:none;display:inline-block;transition:all .15s}
+.btn-ghost:hover{background:rgba(232,168,124,.08)}
+
+/* TRUST BAR */
+.trust-bar{background:#1c424d;padding:14px 32px;display:flex;gap:28px;flex-wrap:wrap}
+.trust-item{color:#6f969b;font-size:12px;display:flex;align-items:center;gap:7px}
+.trust-dot{width:5px;height:5px;border-radius:50%;background:#6f969b;flex-shrink:0}
+
+/* SECTIONS */
+.section{padding:40px 32px;border-bottom:1px solid #f1f5f9}
+.section:last-child{border-bottom:none}
+.sec-label{font-size:10px;font-weight:600;color:#6f969b;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.section h2{font-size:22px;font-weight:600;color:#121e21;margin-bottom:20px;line-height:1.3}
+
+/* PRODUCTS GRID */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.product-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;transition:border-color .15s;cursor:pointer}
+.product-card:hover{border-color:#6f969b}
+.product-icon{width:32px;height:32px;background:#e8f4f5;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;color:#1c424d;font-size:16px}
+.product-title{font-size:13px;font-weight:600;color:#121e21;margin-bottom:4px}
+.product-sub{font-size:12px;color:#64748b;line-height:1.4}
+.product-link{font-size:11px;color:#6f969b;margin-top:10px;display:flex;align-items:center;gap:4px;font-weight:500}
+
+/* WHY GRID */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.why-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:18px}
+.why-icon{font-size:20px;color:#6f969b;margin-bottom:10px}
+.why-title{font-size:13px;font-weight:600;color:#121e21;margin-bottom:6px}
+.why-body{font-size:12px;color:#64748b;line-height:1.5}
+
+/* PROJECTS */
+.project-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.project-card{border:1px solid #e2e8f0;border-radius:10px;overflow:hidden}
+.project-thumb{background:linear-gradient(135deg,#1c424d 0%,#121e21 100%);height:120px;display:flex;align-items:center;justify-content:center}
+.project-thumb-label{color:rgba(111,150,155,.5);font-size:11px;letter-spacing:.04em}
+.project-info{padding:14px 16px}
+.project-title{font-size:13px;font-weight:600;color:#121e21;margin-bottom:4px}
+.project-sub{font-size:12px;color:#64748b}
+
+/* ESTIMATE BANNER */
+.estimate-banner{background:#1c424d;border-radius:12px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0}
+.estimate-left h3{font-size:16px;font-weight:600;color:#fff;margin-bottom:6px}
+.estimate-left p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5}
+.estimate-btn{background:#e8a87c;color:#121e21;font-size:13px;font-weight:600;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:opacity .15s}
+.estimate-btn:hover{opacity:.88}
+
+/* RESOURCES */
+.resource-list{display:flex;flex-direction:column;gap:8px}
+.resource-item{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#f8fafc;border-radius:10px;border:1px solid #e2e8f0;cursor:pointer;transition:border-color .15s;text-decoration:none}
+.resource-item:hover{border-color:#6f969b}
+.resource-icon{color:#6f969b;font-size:18px;flex-shrink:0}
+.resource-text{flex:1}
+.resource-title{font-size:13px;font-weight:500;color:#121e21;margin-bottom:2px}
+.resource-sub{font-size:11px;color:#94a3b8}
+.resource-arrow{color:#94a3b8;font-size:16px}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid #f1f5f9}
+.faq-item:last-child{border-bottom:none}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:16px 0;cursor:pointer;gap:16px}
+.faq-qt{font-size:14px;font-weight:500;color:#121e21;line-height:1.4}
+.faq-icon{color:#6f969b;font-size:18px;flex-shrink:0;transition:transform .2s}
+.faq-icon.open{transform:rotate(45deg)}
+.faq-a{font-size:13px;color:#64748b;line-height:1.7;padding-bottom:18px;display:none}
+.faq-a.open{display:block}
+
+/* CTA SECTION */
+.cta-section{background:#121e21;padding:52px 32px}
+.cta-section h2{color:#fff;font-size:26px;font-weight:600;margin-bottom:10px;line-height:1.3}
+.cta-section p{color:rgba(255,255,255,.6);font-size:14px;margin-bottom:28px;line-height:1.6;max-width:500px}
+.cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-box{background:#fff;border-radius:14px;padding:28px;width:100%;max-width:500px;position:relative;max-height:90vh;overflow-y:auto}
+.modal-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:#94a3b8;line-height:1}
+.modal-close:hover{color:#334155}
+.modal-box h3{font-size:18px;font-weight:600;color:#121e21;margin-bottom:4px}
+.modal-sub{font-size:13px;color:#64748b;margin-bottom:22px}
+.mfield{margin-bottom:14px}
+.mfield label{display:block;font-size:11px;font-weight:600;color:#64748b;margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+.mfield input,.mfield select{width:100%;font-size:13px;padding:10px 12px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;color:#334155;outline:none;transition:border-color .15s;font-family:'Inter',sans-serif}
+.mfield input:focus,.mfield select:focus{border-color:#6f969b}
+.mrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mresult{background:#f8fafc;border-radius:10px;border:1px solid #e2e8f0;padding:16px;margin-top:18px;display:none}
+.mresult.show{display:block}
+.mres-label{font-size:10px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}
+.mres-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #e2e8f0}
+.mres-row:last-child{border-bottom:none;padding-top:12px}
+.mres-tier{font-size:12px;color:#64748b;display:flex;align-items:center;gap:7px}
+.mres-dot{width:8px;height:8px;border-radius:50%}
+.mres-price{font-size:16px;font-weight:600;color:#121e21}
+.mres-pp{font-size:10px;color:#94a3b8;display:block;text-align:right}
+.mdisclaimer{font-size:11px;color:#94a3b8;line-height:1.5;margin-top:12px;padding-top:12px;border-top:1px solid #e2e8f0}
+.mcta{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+.modal-btn-primary{background:#e8a87c;color:#121e21;font-size:13px;font-weight:600;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-family:'Inter',sans-serif}
+.modal-btn-ghost{background:transparent;color:#64748b;font-size:13px;padding:10px 20px;border-radius:8px;border:1px solid #e2e8f0;cursor:pointer;font-family:'Inter',sans-serif}
+.ooda-badge{background:#e8f4f5;border-radius:8px;padding:10px 12px;font-size:11px;color:#1c424d;line-height:1.5;margin-top:14px;display:flex;gap:8px;align-items:flex-start}
+
+/* FOOTER */
+.footer{background:#0d1719;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-logo{color:#fff;font-size:13px;font-weight:600}
+.footer-logo span{color:#6f969b}
+.footer-links{display:flex;gap:20px}
+.footer-link{color:rgba(255,255,255,.4);font-size:12px;text-decoration:none}
+.footer-copy{color:rgba(255,255,255,.3);font-size:11px;width:100%}
+
+@media(max-width:640px){
+  .hero h1{font-size:22px}
+  .nav-links{display:none}
+  .trust-bar{gap:14px}
+  .estimate-banner{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">Aurora <span>Office Furniture</span></div>
+    <div class="nav-links">
+      <a href="#" class="nav-link">Products</a>
+      <a href="#" class="nav-link active">Industries</a>
+      <a href="#" class="nav-link">Buying guides</a>
+      <a href="#" class="nav-link">About</a>
+      <a href="#" class="nav-link">Contact</a>
+    </div>
+    <a href="#" class="nav-cta">Request a quote</a>
+  </nav>
+
+  <!-- INDUSTRY TABS -->
+  <div class="ind-bar">
+    <button class="ind-tab active" onclick="sw('government',this)">Government</button>
+    <button class="ind-tab" onclick="sw('education',this)">Education</button>
+    <button class="ind-tab" onclick="sw('healthcare',this)">Healthcare</button>
+    <button class="ind-tab" onclick="sw('corporate',this)">Corporate</button>
+    <button class="ind-tab" onclick="sw('designers',this)">Interior designers</button>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-pill" id="hp"><i class="ti ti-building-community" style="font-size:12px"></i> <span id="hp-text">Government &amp; public sector</span></div>
+    <h1 id="hh">Office furniture for government departments &amp; agencies</h1>
+    <p id="hb">Aurora has supplied Canberra's federal and territory government departments for 30+ years. We understand procurement workflows, compliance requirements, and the importance of long-term product continuity.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Request a quote</a>
+      <a href="#" class="btn-ghost">Download our brochure</a>
+    </div>
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar" id="trust-bar">
+    <span class="trust-item"><span class="trust-dot"></span>Purchase order workflows</span>
+    <span class="trust-item"><span class="trust-dot"></span>4,000+ projects delivered</span>
+    <span class="trust-item"><span class="trust-dot"></span>Canberra-based, nationally active</span>
+    <span class="trust-item"><span class="trust-dot"></span>30+ years experience</span>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="section">
+    <div class="sec-label">What we supply</div>
+    <h2 id="ph2">Furniture for government workplaces</h2>
+    <div class="product-grid" id="pg"></div>
+  </div>
+
+  <!-- WHY AURORA -->
+  <div class="section" style="background:#fafcfc">
+    <div class="sec-label">Why Aurora</div>
+    <h2>What <span id="buyer-type">government buyers</span> tell us they value</h2>
+    <div class="why-grid" id="wg"></div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section">
+    <div class="sec-label">Past projects</div>
+    <h2>Recent <span id="ind-proj">government</span> fitouts</h2>
+    <div class="project-row" id="proj-row"></div>
+  </div>
+
+  <!-- ESTIMATE BANNER -->
+  <div class="section">
+    <div class="estimate-banner">
+      <div class="estimate-left">
+        <h3>Get an instant estimate on your fitout</h3>
+        <p>Enter your office size and requirements — we'll generate a budget, mid-range, and premium estimate in seconds.</p>
+      </div>
+      <button class="estimate-btn" onclick="document.getElementById('modal').classList.add('open')">Get instant estimate</button>
+    </div>
+  </div>
+
+  <!-- RESOURCES -->
+  <div class="section" style="background:#fafcfc">
+    <div class="sec-label">Resources</div>
+    <h2>Buying guides for <span id="ind-guides">government buyers</span></h2>
+    <div class="resource-list" id="rl"></div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="sec-label">Frequently asked questions</div>
+    <h2 id="faq-h">Common questions from government buyers</h2>
+    <div id="faq-list"></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="sec-label" style="color:#6f969b">Get started</div>
+    <h2>Ready to talk about your next project?</h2>
+    <p>Tell us what you need. We'll provide a detailed quote, space plan, and product specification — with no obligation to proceed.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-primary">Request a quote</a>
+      <a href="#" class="btn-ghost">Call us: (02) XXXX XXXX</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">Aurora <span>Office Furniture</span></div>
+    <div class="footer-links">
+      <a href="#" class="footer-link">Privacy policy</a>
+      <a href="#" class="footer-link">Terms</a>
+      <a href="#" class="footer-link">Sitemap</a>
+    </div>
+    <div class="footer-copy">© 2025 Aurora Office Furniture. Canberra, ACT. ABN XX XXX XXX XXX</div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">×</button>
+    <h3>Instant fitout estimate</h3>
+    <p class="modal-sub">Get a ballpark range in seconds — no obligation, no sign-up needed.</p>
+    <div class="mrow">
+      <div class="mfield"><label>Office size (m²)</label><input type="number" id="m-size" placeholder="e.g. 200" oninput="calc()"></div>
+      <div class="mfield"><label>Number of staff</label><input type="number" id="m-staff" placeholder="e.g. 20" oninput="calc()"></div>
+    </div>
+    <div class="mrow">
+      <div class="mfield"><label>Desks needed</label>
+        <select id="m-desks" onchange="calc()">
+          <option value="">Select type</option>
+          <option value="standard">Standard fixed desks</option>
+          <option value="sitstand">Sit-stand desks</option>
+          <option value="mix">Mix of both</option>
+        </select>
+      </div>
+      <div class="mfield"><label>Seating</label>
+        <select id="m-chairs" onchange="calc()">
+          <option value="">Select type</option>
+          <option value="task">Task chairs</option>
+          <option value="executive">Executive chairs</option>
+          <option value="mix">Mix of both</option>
+        </select>
+      </div>
+    </div>
+    <div class="mfield"><label>Include lockers?</label>
+      <select id="m-lockers" onchange="calc()">
+        <option value="no">No</option>
+        <option value="yes">Yes — staff personal storage</option>
+      </select>
+    </div>
+    <div class="mresult" id="mresult">
+      <div class="mres-label">Estimated fitout range</div>
+      <div class="mres-row"><span class="mres-tier"><span class="mres-dot" style="background:#94a3b8"></span>Budget-conscious</span><div><span class="mres-price" id="r-entry">—</span><span class="mres-pp" id="r-entry-pp"></span></div></div>
+      <div class="mres-row"><span class="mres-tier"><span class="mres-dot" style="background:#6f969b"></span>Mid-range</span><div><span class="mres-price" id="r-mid">—</span><span class="mres-pp" id="r-mid-pp"></span></div></div>
+      <div class="mres-row"><span class="mres-tier"><span class="mres-dot" style="background:#e8a87c"></span>Premium</span><div><span class="mres-price" id="r-prem">—</span><span class="mres-pp" id="r-prem-pp"></span></div></div>
+      <p class="mdisclaimer">Indicative estimate only. Your actual quote will be based on a site visit and full specification. Excludes GST.</p>
+    </div>
+    <div class="mcta">
+      <button class="modal-btn-primary">Request a detailed quote</button>
+      <button class="modal-btn-ghost" onclick="document.getElementById('modal').classList.remove('open')">Close</button>
+    </div>
+    <div class="ooda-badge"><i class="ti ti-plug" style="font-size:13px;flex-shrink:0;margin-top:1px"></i><span>On submit: lead created in OODA CRM · sales team notified · estimate + brochure emailed to you</span></div>
+  </div>
+</div>
+
+<script>
+const D={
+  government:{pill:'Government & public sector',icon:'ti-building-community',h1:'Office furniture for government departments & agencies',hb:"Aurora has supplied Canberra's federal and territory government departments for 30+ years. We understand procurement workflows, compliance requirements, and the importance of long-term product continuity.",ph2:'Furniture for government workplaces',buyer:'government buyers',proj:'government',guides:['How to specify office lockers for a government workplace','Sit-stand desk specification mistakes and how to avoid them'],trust:['Purchase order workflows','4,000+ projects delivered','Canberra-based, nationally active','30+ years experience'],faqh:'Common questions from government buyers',products:[{i:'ti-layout-board',t:'Workstations',s:'Open plan & individual configurations'},{i:'ti-lock',t:'Lockers & storage',s:'Hot desk, personal & bulk storage'},{i:'ti-arrows-up-down',t:'Sit-stand desks',s:'Electric height-adjustable systems'},{i:'ti-armchair',t:'Task seating',s:'Ergonomic office chairs'},{i:'ti-users',t:'Meeting furniture',s:'Tables, chairs & collaborative spaces'}],why:[{i:'ti-file-check',t:'Purchase order workflows',b:'We work within existing procurement and PO processes — no friction, no workarounds.'},{i:'ti-refresh',t:'Product continuity',b:'Ranges that stay available long-term so you can match and extend existing fitouts.'},{i:'ti-truck',t:'Reliable delivery',b:'On-time delivery and professional installation coordinated around your operations.'},{i:'ti-map-pin',t:'Canberra local',b:'Based in Canberra. Fast response times, showroom access, and local accountability.'}],projects:[{t:'ACT government department fitout',s:'120 workstations · sit-stand desks · lockers'},{t:'Federal agency office refresh',s:'Meeting furniture · storage systems · seating'},{t:'Territory authority workstations',s:'Open plan workstations · task chairs'}],faqs:[{q:'Do you supply to federal government departments?',a:'Yes. Aurora has supplied federal and territory government departments in Canberra for over 30 years. We understand and accommodate purchase order workflows, procurement timelines, and compliance requirements.'},{q:'Can you match existing furniture from a previous fitout?',a:'In many cases, yes. Aurora carries ranges with strong product continuity, meaning you can add to or replace furniture from prior fitouts without losing visual consistency. Contact us with your existing product details and we can advise.'},{q:'Do you provide installation as part of a government supply contract?',a:'Yes. Professional delivery and installation is included as standard on commercial orders. We coordinate installation around your operational requirements to minimise disruption.'},{q:'What are your typical lead times for government orders?',a:'Lead times vary by product and volume. Standard in-stock items can often be delivered within 1–2 weeks. Custom or high-volume orders are quoted with specific timelines upfront so you can plan accordingly.'}]},
+  education:{pill:'Education & schools',icon:'ti-school',h1:'Office furniture for schools, colleges & universities',hb:"Aurora supplies ACT schools and education institutions with furniture for administration areas, staff rooms, and meeting spaces — reliable, easy to procure, and built for long-term use.",ph2:'Furniture for education environments',buyer:'school buyers',proj:'education',guides:["Office locker buyer's guide for schools","Sit-stand desks for education staff — what to specify"],trust:['Budget-aligned quoting','School-friendly installation','4,000+ projects delivered','ACT & regional NSW'],faqh:'Common questions from school buyers',products:[{i:'ti-coffee',t:'Staff room furniture',s:'Tables, chairs & breakout seating'},{i:'ti-desk',t:'Administration desks',s:'Reception, office & sit-stand'},{i:'ti-lock',t:'Lockers',s:'Staff & end-of-trip storage'},{i:'ti-users',t:'Meeting furniture',s:'Tables, chairs & collaborative setups'},{i:'ti-archive',t:'Storage & shelving',s:'Filing, credenzas & bookcases'}],why:[{i:'ti-currency-dollar',t:'Budget-aligned',b:'Honest guidance on the right product for your budget — no upselling.'},{i:'ti-calendar',t:'School-friendly delivery',b:'Installation coordinated around school terms and operational hours.'},{i:'ti-shield-check',t:'Durable products',b:'Commercial-grade furniture built for high-use environments and long service life.'},{i:'ti-clipboard-list',t:'Simple procurement',b:'Streamlined quoting and ordering — easy for business managers and administrators.'}],projects:[{t:'ACT primary school admin refurb',s:'Reception desk · staff lockers · workstations'},{t:'College staff room fitout',s:'Breakout furniture · storage · sit-stand desks'},{t:'Private school admin area',s:'Workstations · task chairs · meeting table'}],faqs:[{q:'Do you supply to ACT public and private schools?',a:'Yes. Aurora supplies both public and private schools across the ACT with office and administration furniture — including sit-stand desks, lockers, workstations, and staff room furniture.'},{q:'Can you work within school budget constraints?',a:'Yes. We provide honest, transparent quoting and can recommend entry-level through to premium options depending on your budget. We will not oversell products that are not right for your environment.'},{q:'Can installation be scheduled outside school hours?',a:'Yes. We regularly coordinate delivery and installation around school terms and operational hours to minimise disruption to staff and students.'},{q:'Do you supply classroom furniture?',a:'Classroom furniture is not currently our primary focus — Aurora specialises in office, administration, and staff areas within school environments. If you have a mixed requirement, contact us and we can discuss what we can assist with.'}]},
+  healthcare:{pill:'Healthcare & medical',icon:'ti-building-hospital',h1:'Office furniture for hospitals, clinics & health services',hb:"Yes, we supply healthcare. Aurora provides commercial-grade office furniture to hospitals, medical centres, and health agencies — including administration areas, staff rooms, and clinical support spaces.",ph2:'Furniture for healthcare facilities',buyer:'healthcare buyers',proj:'healthcare',guides:['Choosing commercial lockers for healthcare staff','Office ergonomics for clinical administration teams'],trust:['High-traffic durability','Out-of-hours installation','4,000+ projects delivered','Canberra & nationally'],faqh:'Common questions from healthcare buyers',products:[{i:'ti-desk',t:'Admin workstations',s:'Nurse stations & office setups'},{i:'ti-armchair',t:'Task seating',s:'Ergonomic chairs for clinical staff'},{i:'ti-lock',t:'Lockers & storage',s:'Staff lockers & personal storage'},{i:'ti-users',t:'Meeting furniture',s:'Conference & breakout spaces'},{i:'ti-door-enter',t:'Reception furniture',s:'Waiting areas & front-of-house'}],why:[{i:'ti-shield',t:'Durable & hygienic',b:'Commercial-grade products suited to high-traffic, high-use healthcare environments.'},{i:'ti-clock',t:'Minimal disruption',b:'Installation coordinated to avoid disruption to clinical operations.'},{i:'ti-settings',t:'Flexible configurations',b:'Products that adapt to changing space requirements and team configurations.'},{i:'ti-map-pin',t:'Locally supported',b:'Canberra-based with fast response times for replacements or additions.'}],projects:[{t:'ACT hospital admin wing',s:'Staff lockers · workstations · meeting furniture'},{t:'Medical centre fitout',s:'Reception · admin desks · task seating'},{t:'Health agency office',s:'Sit-stand desks · open plan workstations'}],faqs:[{q:'Do you supply furniture to hospitals and health services?',a:'Yes. Aurora supplies office and administration furniture to hospitals, medical centres, and government health agencies. This includes staff areas, administration offices, meeting rooms, and end-of-trip facilities.'},{q:'Can you supply end-of-trip lockers for healthcare staff?',a:'Yes. We supply a full range of commercial lockers suitable for end-of-trip and staff storage in healthcare environments, including electronic lock options and ventilated configurations.'},{q:'Are your products suitable for high-traffic healthcare environments?',a:'Yes. Aurora supplies commercial-grade furniture designed for durability in demanding environments. We can advise on the most appropriate products for your specific requirements.'},{q:'Can installation be done outside of business hours?',a:'Yes. We can coordinate delivery and installation outside of standard hours to minimise disruption to clinical operations. This is discussed and agreed during the quoting process.'}]},
+  corporate:{pill:'Corporate offices',icon:'ti-building',h1:'Office furniture for commercial fitouts & office refurbishments',hb:"From small office upgrades to full commercial fitouts, Aurora manages the entire process — quoting, space planning, delivery, and installation — so your project runs on time and on budget.",ph2:'Furniture for corporate workplaces',buyer:'corporate buyers',proj:'corporate',guides:['Sit-stand desk specification mistakes and how to avoid them',"Office locker buyer's guide for corporate teams"],trust:['End-to-end project management','3D space planning included','4,000+ projects delivered','Canberra · Sydney · Melbourne'],faqh:'Common questions from corporate buyers',products:[{i:'ti-arrows-up-down',t:'Sit-stand desks',s:'Electric height-adjustable systems'},{i:'ti-layout-board',t:'Workstations',s:'Open plan & individual configs'},{i:'ti-armchair',t:'Task & executive seating',s:'Ergonomic office chairs'},{i:'ti-lock',t:'Lockers',s:'Personal storage for hybrid teams'},{i:'ti-users',t:'Meeting & collaborative',s:'Tables, chairs, soft seating'}],why:[{i:'ti-layout-2',t:'3D space planning',b:'We provide detailed 3D layouts before you commit — so you know exactly how it will look.'},{i:'ti-clock',t:'On-time delivery',b:'Reliable scheduling and professional installation coordinated around your move-in date.'},{i:'ti-adjustments',t:'End-to-end service',b:'One point of contact from initial brief through to final installation and handover.'},{i:'ti-palette',t:'Finish options',b:'Broad range of colours and finishes to match your brand and interior specification.'}],projects:[{t:'Canberra CBD office fitout',s:'80 sit-stand desks · lockers · meeting furniture'},{t:'Professional services office',s:'Executive furniture · boardroom · workstations'},{t:'Tech company office refurb',s:'Open plan desks · task seating · breakout furniture'}],faqs:[{q:'Do you manage the full fitout process, or just supply furniture?',a:'Both. Aurora can supply furniture only, or manage the full fitout process including space planning, quoting, delivery, and professional installation. We adapt to your project requirements.'},{q:'Can you provide a 3D layout of our office before we commit?',a:'Yes. Aurora provides 3D space planning as part of our quoting process. This allows you to visualise the layout and make adjustments before any furniture is ordered or installed.'},{q:'How do you handle large or staged fitout projects?',a:'We have extensive experience in staged commercial fitouts. We coordinate delivery and installation in phases to work around your operational requirements and move-in timeline.'},{q:'Can furniture be customised in size or finish?',a:'Yes. Many products in our range can be customised in desktop size, finish colour, and configuration. Lead times for custom products vary and are quoted upfront.'}]},
+  designers:{pill:'Interior designers & fitout companies',icon:'ti-ruler-2',h1:'Trade supply for interior designers, workplace designers & fitout companies',hb:"Aurora is a preferred trade supplier for interior designers and fitout companies across Canberra, Sydney, and Melbourne. Fast quoting, broad finishes, REVIT resources, and reliable delivery — every time.",ph2:'Furniture for design & fitout projects',buyer:'designers and fitout companies',proj:'design',guides:["How to specify commercial lockers — a designer's guide",'Sit-stand desk specification guide for workplace designers'],trust:['Fast trade quoting','REVIT & CAD resources','Broad finish range','Dependable lead times'],faqh:'Common questions from designers and fitout companies',products:[{i:'ti-armchair',t:'Designer seating',s:'Broad colour & finish options'},{i:'ti-layout-board',t:'Collaborative furniture',s:'Acoustic & soft seating solutions'},{i:'ti-desk',t:'Workstations',s:'Specification-friendly configurations'},{i:'ti-lock',t:'Lockers',s:'Custom colour & lock options'},{i:'ti-users',t:'Meeting furniture',s:'Premium tables & boardroom setups'}],why:[{i:'ti-bolt',t:'Fast quoting',b:'Rapid turnaround on quotes so you can keep project timelines on track.'},{i:'ti-file-3d',t:'REVIT & CAD resources',b:'We provide REVIT files and CAD resources to support your specification workflow.'},{i:'ti-palette',t:'Broad finish range',b:'Extensive colour and finish options across our product range to suit any brief.'},{i:'ti-truck',t:'Reliable delivery',b:'Dependable delivery timelines you can build into your project schedule with confidence.'}],projects:[{t:'Commercial fitout — Canberra CBD',s:'Specified by a Canberra interior design firm'},{t:'Workplace design project — Sydney',s:'Collaborative furniture · lockers · workstations'},{t:'Government fitout — ACT',s:'Specified by a national fitout company'}],faqs:[{q:'Do you work with interior designers on a trade basis?',a:'Yes. Aurora works with interior designers and fitout companies on a trade supply basis. We offer fast quoting, product samples, REVIT resources, and dedicated account support for trade clients.'},{q:'Can you provide REVIT files and CAD drawings for your products?',a:'Yes. REVIT files and CAD drawings are available for key products in our range. Contact us with your specific requirements and we will provide the relevant files promptly.'},{q:'What lead times can I build into my project schedule?',a:'Lead times vary by product and are confirmed at the quoting stage. We provide specific, reliable lead time commitments so you can plan your project schedule with confidence.'},{q:'Do you offer custom finishes for project specifications?',a:'Yes. Many products in our range can be specified in custom finishes and colours. We work with designers to match finishes to project requirements. Custom lead times and minimum order quantities apply and are confirmed at the quoting stage.'}]}
+};
+
+function sw(key,el){
+  document.querySelectorAll('.ind-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  const d=D[key];
+  document.getElementById('hp-text').textContent=d.pill;
+  document.getElementById('hh').textContent=d.h1;
+  document.getElementById('hb').textContent=d.hb;
+  document.getElementById('ph2').textContent=d.ph2;
+  document.getElementById('buyer-type').textContent=d.buyer;
+  document.getElementById('ind-proj').textContent=d.proj;
+  document.getElementById('ind-guides').textContent=d.buyer;
+  document.getElementById('faq-h').textContent=d.faqh;
+  document.getElementById('trust-bar').innerHTML=d.trust.map(t=>`<span class="trust-item"><span class="trust-dot"></span>${t}</span>`).join('');
+  document.getElementById('pg').innerHTML=d.products.map(p=>`<div class="product-card"><div class="product-icon"><i class="ti ${p.i}"></i></div><div class="product-title">${p.t}</div><div class="product-sub">${p.s}</div><div class="product-link">View range <i class="ti ti-arrow-right" style="font-size:11px"></i></div></div>`).join('');
+  document.getElementById('wg').innerHTML=d.why.map(w=>`<div class="why-card"><div class="why-icon"><i class="ti ${w.i}"></i></div><div class="why-title">${w.t}</div><div class="why-body">${w.b}</div></div>`).join('');
+  document.getElementById('proj-row').innerHTML=d.projects.map(p=>`<div class="project-card"><div class="project-thumb"><span class="project-thumb-label">Project photo</span></div><div class="project-info"><div class="project-title">${p.t}</div><div class="project-sub">${p.s}</div></div></div>`).join('');
+  document.getElementById('rl').innerHTML=d.guides.map(g=>`<a href="#" class="resource-item"><i class="ti ti-book resource-icon"></i><div class="resource-text"><div class="resource-title">${g}</div><div class="resource-sub">Aurora buying guide</div></div><i class="ti ti-arrow-right resource-arrow"></i></a>`).join('');
+  document.getElementById('faq-list').innerHTML=d.faqs.map((f,i)=>`<div class="faq-item"><div class="faq-q" onclick="tFaq(${i})"><span class="faq-qt">${f.q}</span><i class="ti ti-plus faq-icon" id="fi${i}"></i></div><div class="faq-a" id="fa${i}">${f.a}</div></div>`).join('');
+}
+
+function tFaq(i){
+  const a=document.getElementById('fa'+i),ic=document.getElementById('fi'+i);
+  const open=a.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(e=>e.classList.remove('open'));
+  document.querySelectorAll('.faq-icon').forEach(e=>e.classList.remove('open'));
+  if(!open){a.classList.add('open');ic.classList.add('open')}
+}
+
+function calc(){
+  const staff=parseInt(document.getElementById('m-staff').value)||0;
+  const desks=document.getElementById('m-desks').value;
+  const chairs=document.getElementById('m-chairs').value;
+  const lockers=document.getElementById('m-lockers').value;
+  if(!staff||!desks||!chairs){document.getElementById('mresult').classList.remove('show');return}
+  const P={budget:{desk:400,ss:900,chair:280,exec:600,lock:180},mid:{desk:650,ss:1350,chair:480,exec:950,lock:320},prem:{desk:900,ss:1800,chair:750,exec:1400,lock:480}};
+  function t(tier){
+    const p=P[tier];
+    const d=desks==='sitstand'?p.ss:desks==='mix'?Math.round((p.desk+p.ss)/2):p.desk;
+    const c=chairs==='executive'?p.exec:chairs==='mix'?Math.round((p.chair+p.exec)/2):p.chair;
+    let v=staff*(d+c+380);
+    if(lockers==='yes')v+=staff*p.lock;
+    return Math.round(v*1.12/100)*100;
+  }
+  const b=t('budget'),m=t('mid'),pr=t('prem');
+  const fmt=n=>'$'+n.toLocaleString('en-AU');
+  const pp=n=>fmt(Math.round(n/staff/50)*50)+' per person';
+  document.getElementById('r-entry').textContent=fmt(b);document.getElementById('r-entry-pp').textContent=pp(b);
+  document.getElementById('r-mid').textContent=fmt(m);document.getElementById('r-mid-pp').textContent=pp(m);
+  document.getElementById('r-prem').textContent=fmt(pr);document.getElementById('r-prem-pp').textContent=pp(pr);
+  document.getElementById('mresult').classList.add('show');
+}
+
+sw('government',document.querySelector('.ind-tab.active'));
+</script>
+</body>
+</html>
