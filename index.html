@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurora Office Furniture — Navigation Redesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f1f5f9;color:#334155;min-height:100vh}
+
+/* UTIL BAR */
+.util-bar{background:#0d1719;padding:0 32px;height:38px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.util-left{display:flex;align-items:center;gap:20px;flex-shrink:0}
+.util-item{color:rgba(255,255,255,.4);font-size:11px;white-space:nowrap}
+.util-phone{color:#6f969b;font-size:11px;font-weight:500;white-space:nowrap;flex-shrink:0}
+.search-wrap{flex:1;max-width:320px;position:relative;margin:0 24px}
+.search-wrap input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:5px 10px 5px 30px;font-size:11px;color:rgba(255,255,255,.75);font-family:'Inter',sans-serif;outline:none;transition:border-color .15s}
+.search-wrap input::placeholder{color:rgba(255,255,255,.3)}
+.search-wrap input:focus{border-color:rgba(111,150,155,.5);background:rgba(255,255,255,.09)}
+.search-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.3);font-size:12px;pointer-events:none}
+
+/* MAIN NAV */
+.nav{background:#121e21;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px;position:relative;z-index:100}
+.nav-logo{color:#fff;font-size:15px;font-weight:600;letter-spacing:.02em;flex-shrink:0;cursor:pointer}
+.nav-logo span{color:#6f969b}
+.nav-center{display:flex;align-items:center;gap:2px}
+.nav-item{position:relative;display:flex;align-items:center;gap:5px;padding:8px 12px;font-size:12px;font-weight:500;color:rgba(255,255,255,.6);cursor:pointer;border-radius:5px;transition:all .15s;user-select:none;white-space:nowrap}
+.nav-item:hover,.nav-item.open{color:#fff;background:rgba(255,255,255,.08)}
+.chev{width:7px;height:7px;border:solid rgba(255,255,255,.35);border-width:0 1.5px 1.5px 0;display:inline-block;padding:0;transform:rotate(45deg) translateY(-1px);transition:transform .2s}
+.nav-item.open .chev{transform:rotate(-135deg) translateY(-1px)}
+.nav-item.industries{color:#6f969b}
+.nav-item.industries:hover,.nav-item.industries.open{color:#6f969b;background:rgba(111,150,155,.1)}
+.nav-item.industries .chev{border-color:rgba(111,150,155,.45)}
+.nav-new-badge{background:#1c424d;color:#6f969b;font-size:9px;font-weight:600;padding:1px 6px;border-radius:8px;letter-spacing:.03em}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.btn-estimator{padding:7px 14px;border-radius:6px;border:1px solid rgba(232,168,124,.4);color:#e8a87c;font-size:11px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;background:transparent}
+.btn-estimator:hover{background:rgba(232,168,124,.08);border-color:#e8a87c}
+.btn-quote{background:#e8a87c;color:#121e21;font-size:12px;font-weight:600;padding:8px 18px;border-radius:6px;cursor:pointer;transition:opacity .15s;white-space:nowrap;border:none}
+.btn-quote:hover{opacity:.88}
+
+/* DROPDOWNS */
+.dropdown{position:absolute;top:56px;left:0;right:0;background:#fff;border-top:2px solid #6f969b;box-shadow:0 16px 40px rgba(0,0,0,.1);display:none;z-index:99}
+.dropdown.open{display:block}
+.dd-inner{max-width:1100px;margin:0 auto;padding:28px 32px 28px;display:grid;gap:32px}
+
+/* top padding on the col content */
+.dd-col{padding-top:8px}
+
+.dd-products{grid-template-columns:repeat(5,1fr)}
+.dd-industries{grid-template-columns:1fr}
+.dd-resources{grid-template-columns:1fr 1fr 1fr}
+.dd-about{grid-template-columns:1fr 1fr 1fr}
+
+.dd-col-title{font-size:11px;font-weight:600;color:#121e21;margin-bottom:8px}
+.dd-link{display:block;padding:3px 0;font-size:12px;color:#64748b;cursor:pointer;transition:color .12s;text-decoration:none}
+.dd-link:hover{color:#121e21}
+.dd-divider{height:1px;background:#f1f5f9;margin:8px 0}
+.dd-see-all{font-size:11px;color:#6f969b;font-weight:500;cursor:pointer;margin-top:8px;display:inline-block}
+.dd-see-all:hover{color:#1c424d}
+
+/* Industries — simple list */
+.dd-ind-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0 32px}
+.ind-col-title{font-size:11px;font-weight:600;color:#121e21;margin-bottom:8px}
+.ind-link{display:block;padding:3px 0;font-size:12px;color:#64748b;cursor:pointer;transition:color .12s;text-decoration:none}
+.ind-link:hover{color:#121e21}
+.ind-new{background:#1c424d;color:#6f969b;font-size:9px;font-weight:600;padding:1px 5px;border-radius:7px;margin-left:5px;vertical-align:middle}
+
+/* Resources sub-group label */
+.res-group-label{font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.07em;margin:10px 0 4px}
+.res-group-label:first-child{margin-top:0}
+
+/* Products promo */
+.dd-promo{background:#121e21;border-radius:8px;padding:16px;margin-top:8px}
+.dd-promo-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:6px;line-height:1.35}
+.dd-promo-body{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:12px}
+.dd-promo-btn{display:inline-block;background:#e8a87c;color:#121e21;font-size:11px;font-weight:600;padding:6px 13px;border-radius:5px;cursor:pointer}
+.dd-promo-btn:hover{opacity:.88}
+
+/* overlay */
+.overlay{display:none;position:fixed;inset:0;z-index:98}
+.overlay.open{display:block}
+
+/* PAGE CONTENT */
+.page-content{display:none}
+.page-content.active{display:block}
+.state-bar{background:#1c424d;padding:8px 32px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.state-label{font-size:11px;color:#6f969b}
+.state-pill{background:rgba(111,150,155,.25);color:#6f969b;font-size:10px;font-weight:600;padding:2px 9px;border-radius:10px}
+.hero-block{background:#121e21;padding:80px 32px;text-align:center}
+.hero-eyebrow{font-size:11px;font-weight:600;color:#6f969b;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.hero-h1{font-size:34px;font-weight:600;color:#fff;line-height:1.2;margin-bottom:16px;max-width:600px;margin-left:auto;margin-right:auto}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.6);line-height:1.65;max-width:520px;margin:0 auto 28px}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hbtn-p{background:#e8a87c;color:#121e21;font-size:13px;font-weight:600;padding:12px 26px;border-radius:8px;cursor:pointer;border:none}
+.hbtn-g{background:transparent;color:#e8a87c;font-size:13px;padding:12px 26px;border-radius:8px;cursor:pointer;border:1.5px solid #e8a87c}
+.content-hint{max-width:800px;margin:56px auto;padding:0 32px;text-align:center}
+.content-hint-title{font-size:17px;font-weight:600;color:#121e21;margin-bottom:8px}
+.content-hint-sub{font-size:14px;color:#64748b;line-height:1.6}
+.page-cards{max-width:800px;margin:0 auto;padding:0 32px 48px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pc{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:18px;text-align:center}
+.pc-title{font-size:12px;font-weight:600;color:#121e21;margin-bottom:4px}
+.pc-sub{font-size:11px;color:#64748b;line-height:1.4}
+</style>
+</head>
+<body>
+
+<!-- UTIL BAR with search -->
+<div class="util-bar">
+  <div class="util-left">
+    <span class="util-item">Canberra · Sydney · Melbourne</span>
+    <span class="util-item">Mon–Fri 8am–4pm</span>
+    <span class="util-item">quotes@auroraoffice.com.au</span>
+  </div>
+  <div class="search-wrap">
+    <span class="search-icon">&#9906;</span>
+    <input type="text" placeholder="Search products, guides, projects...">
+  </div>
+  <span class="util-phone">(02) 6299 4637</span>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="nav">
+  <div class="nav-logo" onclick="showPage('home')">Aurora <span>Office Furniture</span></div>
+  <div class="nav-center">
+    <div class="nav-item" id="ni-products" onclick="toggleDrop('products')">Products <span class="chev"></span></div>
+    <div class="nav-item industries" id="ni-industries" onclick="toggleDrop('industries')">Industries <span class="nav-new-badge">New</span> <span class="chev" style="border-color:rgba(111,150,155,.45)"></span></div>
+    <div class="nav-item" onclick="showPage('services');closeDrop()">Services</div>
+    <div class="nav-item" onclick="showPage('projects');closeDrop()">Projects</div>
+    <div class="nav-item" id="ni-resources" onclick="toggleDrop('resources')">Resources <span class="chev"></span></div>
+    <div class="nav-item" id="ni-about" onclick="toggleDrop('about')">About <span class="chev"></span></div>
+  </div>
+  <div class="nav-right">
+    <div class="btn-estimator" onclick="showPage('estimator');closeDrop()">Fitout estimator</div>
+    <button class="btn-quote" onclick="showPage('quote');closeDrop()">Get a quote</button>
+  </div>
+</nav>
+
+<div class="overlay" id="overlay" onclick="closeDrop()"></div>
+
+<!-- PRODUCTS DROPDOWN — Incanda style: category heading + sub-links beneath -->
+<div class="dropdown" id="dd-products">
+  <div class="dd-inner dd-products">
+
+    <div class="dd-col">
+      <div class="dd-col-title">Desks & workstations</div>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Sit-stand desks</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Fixed height desks</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Executive desks</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Reception desks</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Workstation screens</a>
+    </div>
+
+    <div class="dd-col">
+      <div class="dd-col-title">Seating</div>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Ergonomic chairs</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Executive chairs</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Visitor & training chairs</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Meeting & boardroom chairs</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Lounges & soft seating</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Bar stools</a>
+    </div>
+
+    <div class="dd-col">
+      <div class="dd-col-title">Storage & lockers</div>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Workplace lockers</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Filing cabinets</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Pedestals & desk drawers</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Bookcases</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Credenzas & cupboards</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Compactus units</a>
+    </div>
+
+    <div class="dd-col">
+      <div class="dd-col-title">Tables</div>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Boardroom tables</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Meeting tables</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Coffee tables</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Bar & high tables</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Flip-top tables</a>
+      <div class="dd-col-title" style="margin-top:14px">Acoustic solutions</div>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Acoustic pods</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Acoustic screens</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Wall tiles</a>
+    </div>
+
+    <div class="dd-col">
+      <div class="dd-col-title">Shop by</div>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Express furniture</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">Best sellers</a>
+      <a class="dd-link" onclick="showPage('products');closeDrop()">New arrivals</a>
+      <div class="dd-promo">
+        <div class="dd-promo-title">Fitout cost estimator</div>
+        <div class="dd-promo-body">Get a 3-tier budget estimate in under 2 minutes.</div>
+        <div class="dd-promo-btn" onclick="showPage('estimator');closeDrop()">Get an estimate →</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- INDUSTRIES DROPDOWN — clean list only -->
+<div class="dropdown" id="dd-industries">
+  <div class="dd-inner dd-industries">
+    <div class="dd-col">
+      <div class="dd-ind-grid">
+        <div>
+          <div class="ind-col-title">Government <span class="ind-new">New</span></div>
+          <a class="ind-link" onclick="showPage('gov');closeDrop()">Federal government</a>
+          <a class="ind-link" onclick="showPage('gov');closeDrop()">Territory government</a>
+          <a class="ind-link" onclick="showPage('gov');closeDrop()">Local government</a>
+          <a class="ind-link" onclick="showPage('gov');closeDrop()">Defence & agencies</a>
+        </div>
+        <div>
+          <div class="ind-col-title">Education <span class="ind-new">New</span></div>
+          <a class="ind-link" onclick="showPage('edu');closeDrop()">Schools</a>
+          <a class="ind-link" onclick="showPage('edu');closeDrop()">Colleges & TAFEs</a>
+          <a class="ind-link" onclick="showPage('edu');closeDrop()">Universities</a>
+          <a class="ind-link" onclick="showPage('edu');closeDrop()">Early learning</a>
+        </div>
+        <div>
+          <div class="ind-col-title">Healthcare <span class="ind-new">New</span></div>
+          <a class="ind-link" onclick="showPage('health');closeDrop()">Hospitals</a>
+          <a class="ind-link" onclick="showPage('health');closeDrop()">Medical centres</a>
+          <a class="ind-link" onclick="showPage('health');closeDrop()">Health agencies</a>
+          <a class="ind-link" onclick="showPage('health');closeDrop()">Allied health</a>
+        </div>
+        <div>
+          <div class="ind-col-title">Corporate <span class="ind-new">New</span></div>
+          <a class="ind-link" onclick="showPage('corp');closeDrop()">Full office fitouts</a>
+          <a class="ind-link" onclick="showPage('corp');closeDrop()">Office refurbishments</a>
+          <a class="ind-link" onclick="showPage('corp');closeDrop()">Staged fitouts</a>
+          <a class="ind-link" onclick="showPage('corp');closeDrop()">Small office upgrades</a>
+        </div>
+        <div>
+          <div class="ind-col-title">Designers & fitout <span class="ind-new">New</span></div>
+          <a class="ind-link" onclick="showPage('designers');closeDrop()">Interior designers</a>
+          <a class="ind-link" onclick="showPage('designers');closeDrop()">Workplace designers</a>
+          <a class="ind-link" onclick="showPage('designers');closeDrop()">Fitout companies</a>
+          <a class="ind-link" onclick="showPage('designers');closeDrop()">Project managers</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESOURCES DROPDOWN -->
+<div class="dropdown" id="dd-resources">
+  <div class="dd-inner dd-resources">
+    <div class="dd-col">
+      <div class="dd-col-title">Buying guides</div>
+      <div class="res-group-label">Desks</div>
+      <a class="dd-link" onclick="showPage('resources');closeDrop()">Sit-stand desk specification guide</a>
+      <a class="dd-link" onclick="showPage('resources');closeDrop()">Sit-stand desk mistakes to avoid</a>
+      <div class="res-group-label">Lockers</div>
+      <a class="dd-link" onclick="showPage('resources');closeDrop()">Office locker buyer's guide</a>
+      <a class="dd-link" onclick="showPage('resources');closeDrop()">12 tips for choosing office lockers</a>
+      <div class="dd-divider"></div>
+      <a class="dd-see-all" onclick="showPage('resources');closeDrop()">All buying guides →</a>
+    </div>
+    <div class="dd-col">
+      <div class="dd-col-title">Planning tools</div>
+      <a class="dd-link" onclick="showPage('resources');closeDrop()">3D CAD files</a>
+      <a class="dd-link" onclick="showPage('resources');closeDrop()">3D design ideas</a>
+      <a class="dd-link" onclick="showPage('resources');closeDrop()">Materials & finishes</a>
+      <a class="dd-link" onclick="showPage('resources');closeDrop()">Custom finishes</a>
+      <a class="dd-link" onclick="showPage('resources');closeDrop()">Pricing / price book</a>
+      <a class="dd-link" onclick="showPage('resources');closeDrop()">FAQs</a>
+    </div>
+    <div class="dd-col">
+      <div class="dd-col-title">Get an estimate</div>
+      <a class="dd-link" onclick="showPage('estimator');closeDrop()">Fitout cost estimator</a>
+      <a class="dd-link" onclick="showPage('quote');closeDrop()">Request a detailed quote</a>
+      <a class="dd-link" onclick="showPage('services');closeDrop()">Book a free consultation</a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT DROPDOWN -->
+<div class="dropdown" id="dd-about">
+  <div class="dd-inner dd-about">
+    <div class="dd-col">
+      <div class="dd-col-title">Company</div>
+      <a class="dd-link" onclick="showPage('about');closeDrop()">About Aurora</a>
+      <a class="dd-link" onclick="showPage('about');closeDrop()">Our team</a>
+      <a class="dd-link" onclick="showPage('projects');closeDrop()">Past projects</a>
+      <a class="dd-link" onclick="showPage('about');closeDrop()">Visit our showroom</a>
+    </div>
+    <div class="dd-col">
+      <div class="dd-col-title">Help & ordering</div>
+      <a class="dd-link" onclick="showPage('about');closeDrop()">How to order</a>
+      <a class="dd-link" onclick="showPage('resources');closeDrop()">FAQs</a>
+      <a class="dd-link" onclick="showPage('about');closeDrop()">Returns policy</a>
+      <a class="dd-link" onclick="showPage('quote');closeDrop()">Contact us</a>
+    </div>
+    <div class="dd-col">
+      <div class="dd-col-title">Get started</div>
+      <a class="dd-link" onclick="showPage('quote');closeDrop()">Request a quote</a>
+      <a class="dd-link" onclick="showPage('estimator');closeDrop()">Fitout cost estimator</a>
+      <a class="dd-link" onclick="showPage('services');closeDrop()">Book a consultation</a>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE STATES -->
+<div class="page-content active" id="page-home">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">Home page</span><span class="state-label" style="margin-left:6px">— click any nav item to explore the dropdowns</span></div>
+  <div class="hero-block">
+    <div class="hero-eyebrow">Commercial office furniture specialists</div>
+    <div class="hero-h1">Workspace furniture guided by experts, installed on time</div>
+    <div class="hero-sub">Custom products, 3D-planned, supplied and installed with Australia-wide delivery. Trusted by government, architects, designers and businesses since 1993.</div>
+    <div class="hero-btns">
+      <button class="hbtn-p" onclick="showPage('quote')">Get a quote</button>
+      <button class="hbtn-g" onclick="showPage('estimator')">Try the fitout estimator</button>
+    </div>
+  </div>
+  <div class="content-hint">
+    <div class="content-hint-title">Explore the proposed navigation</div>
+    <div class="content-hint-sub">Click any item in the nav to see the dropdown menus. Try <strong>Products</strong> to see the Incanda-style sub-category layout, <strong>Industries</strong> for the new pages, or <strong>Resources</strong> for the buying guides structure. Search bar is in the top utility strip.</div>
+  </div>
+  <div class="page-cards">
+    <div class="pc"><div class="pc-title">Products — Incanda style</div><div class="pc-sub">Category heading with sub-links beneath, no clutter</div></div>
+    <div class="pc"><div class="pc-title">Industries — clean list</div><div class="pc-sub">Five new pages, sub-links per industry, nothing else</div></div>
+    <div class="pc"><div class="pc-title">Search in utility bar</div><div class="pc-sub">Keeps the main nav clean — search lives in the top strip</div></div>
+  </div>
+</div>
+
+<div class="page-content" id="page-products">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">Products</span></div>
+  <div class="hero-block" style="padding:52px 32px"><div class="hero-eyebrow">Products</div><div class="hero-h1" style="font-size:26px">Commercial office furniture</div></div>
+  <div class="content-hint"><div class="content-hint-sub" style="color:#94a3b8;font-size:13px">← Product category pages</div></div>
+</div>
+
+<div class="page-content" id="page-gov">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">Industries → Government</span><span class="state-label" style="margin-left:6px;color:#6f969b">New industry landing page</span></div>
+  <div class="hero-block">
+    <div class="hero-eyebrow">Government & public sector</div>
+    <div class="hero-h1">Office furniture for government departments & agencies</div>
+    <div class="hero-sub">Aurora has supplied Canberra's federal and territory government departments for 30+ years. We understand procurement workflows, compliance requirements, and long-term product continuity.</div>
+    <div class="hero-btns"><button class="hbtn-p" onclick="showPage('quote')">Request a quote</button><button class="hbtn-g">Download our brochure</button></div>
+  </div>
+  <div class="content-hint"><div class="content-hint-sub" style="color:#94a3b8;font-size:13px">← Full government page — products, why Aurora, projects, estimate banner, FAQ, CTA</div></div>
+</div>
+
+<div class="page-content" id="page-edu">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">Industries → Education</span><span class="state-label" style="margin-left:6px;color:#6f969b">New industry landing page</span></div>
+  <div class="hero-block">
+    <div class="hero-eyebrow">Education & schools</div>
+    <div class="hero-h1">Office furniture for schools, colleges & universities</div>
+    <div class="hero-sub">Aurora supplies ACT schools and education institutions with furniture for administration areas, staff rooms, and meeting spaces — reliable, easy to procure, built for long-term use.</div>
+    <div class="hero-btns"><button class="hbtn-p" onclick="showPage('quote')">Request a quote</button><button class="hbtn-g">Download our brochure</button></div>
+  </div>
+  <div class="content-hint"><div class="content-hint-sub" style="color:#94a3b8;font-size:13px">← Full education page</div></div>
+</div>
+
+<div class="page-content" id="page-health">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">Industries → Healthcare</span><span class="state-label" style="margin-left:6px;color:#6f969b">New industry landing page</span></div>
+  <div class="hero-block">
+    <div class="hero-eyebrow">Healthcare & medical</div>
+    <div class="hero-h1">Office furniture for hospitals, clinics & health services</div>
+    <div class="hero-sub">Yes — we supply healthcare. Aurora provides commercial-grade office furniture to hospitals, medical centres, and health agencies across Australia.</div>
+    <div class="hero-btns"><button class="hbtn-p" onclick="showPage('quote')">Request a quote</button><button class="hbtn-g">Download our brochure</button></div>
+  </div>
+  <div class="content-hint"><div class="content-hint-sub" style="color:#94a3b8;font-size:13px">← Full healthcare page</div></div>
+</div>
+
+<div class="page-content" id="page-corp">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">Industries → Corporate</span><span class="state-label" style="margin-left:6px;color:#6f969b">New industry landing page</span></div>
+  <div class="hero-block">
+    <div class="hero-eyebrow">Corporate offices</div>
+    <div class="hero-h1">Office furniture for commercial fitouts & refurbishments</div>
+    <div class="hero-sub">From small office upgrades to full commercial fitouts, Aurora manages the entire process — quoting, space planning, delivery, and installation.</div>
+    <div class="hero-btns"><button class="hbtn-p" onclick="showPage('quote')">Request a quote</button><button class="hbtn-g">Download our brochure</button></div>
+  </div>
+  <div class="content-hint"><div class="content-hint-sub" style="color:#94a3b8;font-size:13px">← Full corporate page</div></div>
+</div>
+
+<div class="page-content" id="page-designers">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">Industries → Interior designers</span><span class="state-label" style="margin-left:6px;color:#6f969b">New industry landing page</span></div>
+  <div class="hero-block">
+    <div class="hero-eyebrow">Interior designers & fitout companies</div>
+    <div class="hero-h1">Trade supply for interior designers & fitout companies</div>
+    <div class="hero-sub">Aurora is a preferred trade supplier across Canberra, Sydney, and Melbourne. Fast quoting, broad finishes, REVIT resources, and reliable delivery — every time.</div>
+    <div class="hero-btns"><button class="hbtn-p" onclick="showPage('quote')">Request a quote</button><button class="hbtn-g">Download our brochure</button></div>
+  </div>
+  <div class="content-hint"><div class="content-hint-sub" style="color:#94a3b8;font-size:13px">← Full interior designers page</div></div>
+</div>
+
+<div class="page-content" id="page-services">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">Services</span></div>
+  <div class="hero-block" style="padding:52px 32px"><div class="hero-eyebrow">Services</div><div class="hero-h1" style="font-size:26px">End-to-end fitout services</div></div>
+  <div class="content-hint"><div class="content-hint-sub" style="color:#94a3b8;font-size:13px">← Services page content</div></div>
+</div>
+
+<div class="page-content" id="page-projects">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">Projects</span></div>
+  <div class="hero-block" style="padding:52px 32px"><div class="hero-eyebrow">Past projects</div><div class="hero-h1" style="font-size:26px">Workspaces brought to life</div></div>
+  <div class="content-hint"><div class="content-hint-sub" style="color:#94a3b8;font-size:13px">← Project gallery and case studies</div></div>
+</div>
+
+<div class="page-content" id="page-resources">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">Resources</span></div>
+  <div class="hero-block" style="padding:52px 32px"><div class="hero-eyebrow">Resources</div><div class="hero-h1" style="font-size:26px">Buying guides, tools & planning resources</div></div>
+  <div class="content-hint"><div class="content-hint-sub" style="color:#94a3b8;font-size:13px">← Buying guides, 3D CAD, materials, pricing, FAQs</div></div>
+</div>
+
+<div class="page-content" id="page-estimator">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">Fitout estimator</span><span class="state-label" style="margin-left:6px;color:#6f969b">Persistent nav CTA</span></div>
+  <div class="hero-block" style="background:#1c424d;padding:52px 32px">
+    <div class="hero-eyebrow">Free fitout estimator</div>
+    <div class="hero-h1" style="font-size:26px">Get an instant budget estimate for your office fitout</div>
+    <div class="hero-sub" style="font-size:13px">3 steps · takes about 2 minutes · no obligation.</div>
+    <div class="hero-btns"><button class="hbtn-p">Start the estimator</button></div>
+  </div>
+  <div class="content-hint"><div class="content-hint-sub" style="color:#94a3b8;font-size:13px">← Full 4-step calculator — see aurora_fitout_calculator.html for the working version</div></div>
+</div>
+
+<div class="page-content" id="page-about">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">About</span></div>
+  <div class="hero-block" style="padding:52px 32px"><div class="hero-eyebrow">About Aurora</div><div class="hero-h1" style="font-size:26px">Three generations of furniture expertise</div></div>
+  <div class="content-hint"><div class="content-hint-sub" style="color:#94a3b8;font-size:13px">← About us, team, showroom, how to order</div></div>
+</div>
+
+<div class="page-content" id="page-quote">
+  <div class="state-bar"><span class="state-label">Currently viewing:</span><span class="state-pill">Get a quote</span><span class="state-label" style="margin-left:6px;color:#6f969b">Primary CTA</span></div>
+  <div class="hero-block" style="background:#1c424d;padding:52px 32px">
+    <div class="hero-eyebrow">Get a quote</div>
+    <div class="hero-h1" style="font-size:26px">Tell us about your project</div>
+    <div class="hero-sub" style="font-size:13px">We'll come back to you with a detailed quote, space plan, and specification — usually within 1 business day.</div>
+  </div>
+  <div class="content-hint"><div class="content-hint-sub" style="color:#94a3b8;font-size:13px">← Quote request form</div></div>
+</div>
+
+<script>
+const drops=['products','industries','resources','about'];
+let current=null;
+function toggleDrop(name){
+  if(current===name){closeDrop();return}
+  closeDrop(false);
+  current=name;
+  document.getElementById('dd-'+name).classList.add('open');
+  document.getElementById('overlay').classList.add('open');
+  drops.forEach(d=>{const ni=document.getElementById('ni-'+d);if(ni)ni.classList.toggle('open',d===name)});
+}
+function closeDrop(reset=true){
+  drops.forEach(d=>{
+    const dd=document.getElementById('dd-'+d);if(dd)dd.classList.remove('open');
+    const ni=document.getElementById('ni-'+d);if(ni)ni.classList.remove('open');
+  });
+  document.getElementById('overlay').classList.remove('open');
+  if(reset)current=null;
+}
+function showPage(name){
+  document.querySelectorAll('.page-content').forEach(p=>p.classList.remove('active'));
+  const pg=document.getElementById('page-'+name);
+  if(pg)pg.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrop()});
+</script>
+</body>
+</html>
