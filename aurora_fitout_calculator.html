@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurora Office Furniture — Fitout Cost Estimator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f1f5f9;color:#334155;font-size:14px;line-height:1.6;min-height:100vh}
+
+/* NAV */
+.nav{background:#121e21;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:50}
+.nav-logo{color:#fff;font-size:14px;font-weight:600;letter-spacing:.02em}
+.nav-logo span{color:#6f969b}
+.nav-links{display:flex;gap:28px}
+.nav-link{color:rgba(255,255,255,.5);font-size:12px;text-decoration:none}
+.nav-link.active{color:#e8a87c;font-weight:500}
+.nav-cta{background:#e8a87c;color:#121e21;font-size:12px;font-weight:600;padding:8px 18px;border-radius:6px;text-decoration:none}
+
+/* HERO */
+.hero{background:#1c424d;padding:40px 32px 36px;text-align:center}
+.hero-eyebrow{font-size:10px;font-weight:600;color:#6f969b;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.hero h1{font-size:28px;font-weight:600;color:#fff;line-height:1.25;margin-bottom:10px}
+.hero p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;max-width:520px;margin:0 auto}
+
+/* STEPS BAR */
+.steps-wrap{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:center}
+.steps-inner{display:flex;gap:0;max-width:700px;width:100%}
+.step-tab{flex:1;padding:16px 8px;font-size:12px;color:#94a3b8;border-bottom:2px solid transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .15s;background:transparent;border-top:none;border-left:none;border-right:none;font-family:'Inter',sans-serif;white-space:nowrap}
+.step-tab.done{color:#6f969b}
+.step-tab.active{color:#121e21;border-bottom-color:#121e21;font-weight:500}
+.step-num{width:20px;height:20px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;font-weight:600}
+.step-tab.done .step-num{background:#6f969b;border-color:#6f969b;color:#fff}
+.step-tab.active .step-num{background:#121e21;border-color:#121e21;color:#fff}
+
+/* PROGRESS */
+.progress-bar{height:3px;background:#e2e8f0;overflow:hidden}
+.progress-fill{height:100%;background:#6f969b;transition:width .35s ease}
+
+/* MAIN LAYOUT */
+.main-layout{max-width:1000px;margin:32px auto;padding:0 24px;display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+.form-card{background:#fff;border-radius:14px;border:1px solid #e2e8f0;padding:28px}
+.sidebar-card{background:#fff;border-radius:14px;border:1px solid #e2e8f0;padding:20px;position:sticky;top:80px}
+
+/* SECTION LABELS */
+.sec-label{font-size:10px;font-weight:600;color:#6f969b;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+.step-panel{display:none}
+.step-panel.active{display:block}
+
+/* FIELDS */
+.field{margin-bottom:18px}
+.field label{display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:6px}
+.field-sub{font-size:12px;color:#94a3b8;margin-bottom:7px;line-height:1.4}
+.field input,.field select{width:100%;font-size:13px;padding:10px 12px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;color:#334155;outline:none;transition:border-color .15s;font-family:'Inter',sans-serif}
+.field input:focus,.field select:focus{border-color:#6f969b;box-shadow:0 0 0 3px rgba(111,150,155,.12)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* TOGGLE GROUPS */
+.tog-group{display:flex;flex-wrap:wrap;gap:7px}
+.tog{padding:8px 16px;border-radius:20px;border:1px solid #e2e8f0;font-size:12px;color:#64748b;cursor:pointer;background:#fff;transition:all .15s;font-family:'Inter',sans-serif;line-height:1}
+.tog:hover{border-color:#94a3b8;color:#334155}
+.tog.on{background:#121e21;color:#fff;border-color:#121e21}
+
+/* EXTRAS */
+.extras-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.extra{display:flex;align-items:center;gap:9px;padding:11px 13px;border-radius:9px;border:1px solid #e2e8f0;cursor:pointer;background:#f8fafc;transition:all .15s}
+.extra:hover{border-color:#94a3b8}
+.extra.on{border-color:#6f969b;background:#e8f4f5}
+.extra-cb{width:17px;height:17px;border-radius:4px;border:1.5px solid #cbd5e1;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .15s}
+.extra.on .extra-cb{background:#6f969b;border-color:#6f969b;color:#fff}
+.extra-label{font-size:12px;color:#475569}
+.extra.on .extra-label{color:#1c424d;font-weight:500}
+
+/* CONTACT NOTE */
+.contact-note{background:#e8f4f5;border-radius:9px;padding:13px 15px;margin-bottom:18px;font-size:12px;color:#1c424d;line-height:1.55;display:flex;gap:9px;align-items:flex-start}
+
+/* NAV BUTTONS */
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:18px;border-top:1px solid #f1f5f9}
+.btn-back{font-size:12px;color:#64748b;background:#fff;border:1px solid #e2e8f0;padding:10px 20px;border-radius:8px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.btn-back:hover{border-color:#94a3b8;color:#334155}
+.btn-next{font-size:13px;font-weight:600;background:#121e21;color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .15s}
+.btn-next:hover{opacity:.87}
+.btn-submit{font-size:13px;font-weight:600;background:#e8a87c;color:#121e21;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .15s}
+.btn-submit:hover{opacity:.88}
+
+/* SIDEBAR */
+.sb-title{font-size:10px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px}
+.tier-row{padding:10px 0;border-bottom:1px solid #f1f5f9}
+.tier-row:last-of-type{border-bottom:none}
+.tier-name{font-size:11px;color:#64748b;display:flex;align-items:center;gap:7px;margin-bottom:3px}
+.tier-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.tier-price{font-size:18px;font-weight:600;color:#121e21}
+.tier-pp{font-size:11px;color:#94a3b8}
+.sb-disclaimer{font-size:10px;color:#94a3b8;line-height:1.5;padding-top:10px;border-top:1px solid #f1f5f9;margin-top:4px}
+.sb-selections{font-size:11px;color:#64748b;line-height:1.9;margin-top:16px;padding-top:14px;border-top:1px solid #f1f5f9}
+.sb-sel-title{font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+.sb-phone{background:#f8fafc;border-radius:8px;padding:12px;margin-top:14px;border:1px solid #e2e8f0;font-size:12px;color:#64748b}
+.sb-phone strong{color:#121e21;display:block;margin-top:2px;font-size:13px}
+
+/* RESULT */
+.result-banner{background:#121e21;border-radius:10px;padding:20px 22px;margin-bottom:20px}
+.result-banner p{font-size:12px;color:rgba(255,255,255,.6);line-height:1.55;margin-bottom:14px}
+.result-pills{display:flex;gap:10px;flex-wrap:wrap}
+.result-pill{background:rgba(255,255,255,.09);border-radius:8px;padding:8px 14px}
+.result-pill-label{font-size:10px;color:rgba(255,255,255,.45);margin-bottom:2px}
+.result-pill-val{font-size:14px;font-weight:600;color:#fff}
+.tier-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px}
+.tier-card{border-radius:10px;padding:16px;border:1px solid #e2e8f0;background:#f8fafc}
+.tier-card.mid{border-color:#6f969b;background:#e8f4f5}
+.tier-card-eyebrow{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.tier-card.budget .tier-card-eyebrow{color:#64748b}
+.tier-card.mid .tier-card-eyebrow{color:#1c424d}
+.tier-card.prem .tier-card-eyebrow{color:#92400e}
+.tier-card-price{font-size:18px;font-weight:600;color:#121e21;margin-bottom:2px}
+.tier-card-pp{font-size:11px;color:#64748b;margin-bottom:10px}
+.rec-badge{display:inline-block;background:#6f969b;color:#fff;font-size:9px;font-weight:600;padding:2px 8px;border-radius:10px;margin-bottom:6px;letter-spacing:.03em}
+.tier-card-desc{font-size:11px;color:#64748b;line-height:1.5}
+.tier-card.mid .tier-card-desc{color:#1c424d}
+.result-disclaimer{font-size:11px;color:#94a3b8;line-height:1.5;padding:12px 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;margin-bottom:18px}
+.next-steps{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.ns-card{border:1px solid #e2e8f0;border-radius:10px;padding:14px;background:#f8fafc}
+.ns-icon{font-size:20px;color:#6f969b;margin-bottom:8px}
+.ns-title{font-size:12px;font-weight:600;color:#121e21;margin-bottom:4px}
+.ns-body{font-size:11px;color:#64748b;line-height:1.45}
+.result-btns{display:flex;gap:10px;flex-wrap:wrap}
+.ooda-note{background:#e8f4f5;border-radius:8px;padding:11px 13px;font-size:11px;color:#1c424d;line-height:1.5;margin-top:16px;display:flex;gap:8px;align-items:flex-start}
+
+@media(max-width:700px){
+  .main-layout{grid-template-columns:1fr;padding:0 16px}
+  .sidebar-card{position:static}
+  .tier-cards{grid-template-columns:1fr}
+  .next-steps{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .steps-inner{gap:0}
+  .step-tab{font-size:11px;padding:14px 4px;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">Aurora <span>Office Furniture</span></div>
+  <div class="nav-links">
+    <a href="#" class="nav-link">Products</a>
+    <a href="#" class="nav-link">Industries</a>
+    <a href="#" class="nav-link">Buying guides</a>
+    <a href="#" class="nav-link active">Fitout estimator</a>
+    <a href="#" class="nav-link">Contact</a>
+  </div>
+  <a href="#" class="nav-cta">Request a quote</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Free fitout estimator</div>
+  <h1>Get an instant budget estimate for your office fitout</h1>
+  <p>3 steps · takes about 2 minutes · no obligation. Sense-check your internal budget before we talk.</p>
+</div>
+
+<div class="steps-wrap">
+  <div class="steps-inner">
+    <button class="step-tab active" id="tab0"><span class="step-num">1</span>Your office</button>
+    <button class="step-tab" id="tab1"><span class="step-num">2</span>Furniture needs</button>
+    <button class="step-tab" id="tab2"><span class="step-num">3</span>Your details</button>
+    <button class="step-tab" id="tab3"><span class="step-num">4</span>Your estimate</button>
+  </div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="prog" style="width:25%"></div></div>
+
+<div class="main-layout">
+  <div class="form-card">
+
+    <!-- STEP 1 -->
+    <div class="step-panel active" id="s0">
+      <div class="sec-label">Step 1 — Your office</div>
+      <div class="field-row">
+        <div class="field">
+          <label>Office size (approximate m²)</label>
+          <div class="field-sub">Not sure? A rough estimate is fine.</div>
+          <input type="number" id="f-size" placeholder="e.g. 250" oninput="upd()">
+        </div>
+        <div class="field">
+          <label>Number of staff to accommodate</label>
+          <div class="field-sub">Include full-time and part-time.</div>
+          <input type="number" id="f-staff" placeholder="e.g. 30" oninput="upd()">
+        </div>
+      </div>
+      <div class="field">
+        <label>Fitout type</label>
+        <div class="tog-group" id="g-fitout">
+          <button class="tog on" onclick="tog(this,'g-fitout')">Full fitout — starting from scratch</button>
+          <button class="tog" onclick="tog(this,'g-fitout')">Refurbishment — replacing existing</button>
+          <button class="tog" onclick="tog(this,'g-fitout')">Partial — specific areas only</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Industry</label>
+        <div class="tog-group" id="g-ind">
+          <button class="tog on" onclick="tog(this,'g-ind')">Corporate / commercial</button>
+          <button class="tog" onclick="tog(this,'g-ind')">Government</button>
+          <button class="tog" onclick="tog(this,'g-ind')">Education</button>
+          <button class="tog" onclick="tog(this,'g-ind')">Healthcare</button>
+          <button class="tog" onclick="tog(this,'g-ind')">Other</button>
+        </div>
+      </div>
+      <div class="nav-row">
+        <span style="font-size:11px;color:#94a3b8">All figures are indicative — your final quote is based on a site visit.</span>
+        <button class="btn-next" onclick="go(1)">Next: furniture needs →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-panel" id="s1">
+      <div class="sec-label">Step 2 — Furniture needs</div>
+      <div class="field">
+        <label>Desk type preference</label>
+        <div class="tog-group" id="g-desk">
+          <button class="tog on" onclick="tog(this,'g-desk')">Sit-stand (electric height-adjustable)</button>
+          <button class="tog" onclick="tog(this,'g-desk')">Standard fixed-height desks</button>
+          <button class="tog" onclick="tog(this,'g-desk')">Mix of both</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Seating</label>
+        <div class="tog-group" id="g-chair">
+          <button class="tog on" onclick="tog(this,'g-chair')">Task chairs (ergonomic)</button>
+          <button class="tog" onclick="tog(this,'g-chair')">Executive chairs</button>
+          <button class="tog" onclick="tog(this,'g-chair')">Mix of both</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Additional areas to include</label>
+        <div class="extras-grid">
+          <div class="extra on" onclick="xtra(this)"><div class="extra-cb">✓</div><span class="extra-label">Storage / pedestals</span></div>
+          <div class="extra" onclick="xtra(this)"><div class="extra-cb"></div><span class="extra-label">Lockers</span></div>
+          <div class="extra" onclick="xtra(this)"><div class="extra-cb"></div><span class="extra-label">Meeting room furniture</span></div>
+          <div class="extra" onclick="xtra(this)"><div class="extra-cb"></div><span class="extra-label">Reception area</span></div>
+          <div class="extra" onclick="xtra(this)"><div class="extra-cb"></div><span class="extra-label">Breakout / soft seating</span></div>
+          <div class="extra" onclick="xtra(this)"><div class="extra-cb"></div><span class="extra-label">Privacy screens</span></div>
+          <div class="extra" onclick="xtra(this)"><div class="extra-cb"></div><span class="extra-label">Power & cable management</span></div>
+          <div class="extra" onclick="xtra(this)"><div class="extra-cb"></div><span class="extra-label">End-of-trip facilities</span></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Project timeline</label>
+        <div class="tog-group" id="g-time">
+          <button class="tog" onclick="tog(this,'g-time')">Within 4 weeks</button>
+          <button class="tog on" onclick="tog(this,'g-time')">1–3 months</button>
+          <button class="tog" onclick="tog(this,'g-time')">3–6 months</button>
+          <button class="tog" onclick="tog(this,'g-time')">Planning stage</button>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn-back" onclick="go(0)">← Back</button>
+        <button class="btn-next" onclick="go(2)">Next: your details →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-panel" id="s2">
+      <div class="sec-label">Step 3 — Your details</div>
+      <div class="contact-note">
+        <i class="ti ti-info-circle" style="font-size:15px;flex-shrink:0;margin-top:1px"></i>
+        <span>We'll send your estimate to your email immediately. Your details are also passed to our sales team so we can follow up if you'd like to discuss further — no pressure, no spam.</span>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>First name</label><input type="text" id="f-fname" placeholder="e.g. Sarah"></div>
+        <div class="field"><label>Last name</label><input type="text" id="f-lname" placeholder="e.g. Mitchell"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Company name</label><input type="text" id="f-company" placeholder="e.g. Dept. of Finance"></div>
+        <div class="field"><label>Job title</label><input type="text" id="f-title" placeholder="e.g. Facilities Manager"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Email address</label><input type="email" id="f-email" placeholder="you@company.com.au"></div>
+        <div class="field"><label>Phone number</label><input type="tel" id="f-phone" placeholder="e.g. 0400 000 000"></div>
+      </div>
+      <div class="ooda-note">
+        <i class="ti ti-plug" style="font-size:14px;flex-shrink:0;margin-top:1px"></i>
+        <span>On submit: lead created in OODA CRM automatically · sales team notified · estimate PDF + Aurora brochure sent to your email</span>
+      </div>
+      <div class="nav-row">
+        <button class="btn-back" onclick="go(1)">← Back</button>
+        <button class="btn-submit" onclick="go(3)">Get my estimate →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: RESULT -->
+    <div class="step-panel" id="s3">
+      <div class="sec-label">Your fitout estimate</div>
+      <div class="result-banner">
+        <p>Based on your inputs, here's an indicative range across three budget tiers. These figures use placeholder pricing — your actual quote will be based on a site visit and full specification.</p>
+        <div class="result-pills">
+          <div class="result-pill"><div class="result-pill-label">Staff</div><div class="result-pill-val" id="rp-staff">—</div></div>
+          <div class="result-pill"><div class="result-pill-label">Office size</div><div class="result-pill-val" id="rp-size">—</div></div>
+          <div class="result-pill"><div class="result-pill-label">Includes</div><div class="result-pill-val" id="rp-inc">—</div></div>
+          <div class="result-pill"><div class="result-pill-label">Timeline</div><div class="result-pill-val" id="rp-time">—</div></div>
+        </div>
+      </div>
+      <div class="tier-cards">
+        <div class="tier-card budget">
+          <div class="tier-card-eyebrow">Budget-conscious</div>
+          <div class="tier-card-price" id="tc-b">$—</div>
+          <div class="tier-card-pp" id="tc-b-pp"></div>
+          <div class="tier-card-desc">Functional, durable commercial-grade furniture. Practical and reliable.</div>
+        </div>
+        <div class="tier-card mid">
+          <div class="rec-badge">Most popular</div>
+          <div class="tier-card-eyebrow">Mid-range</div>
+          <div class="tier-card-price" id="tc-m">$—</div>
+          <div class="tier-card-pp" id="tc-m-pp"></div>
+          <div class="tier-card-desc">Balance of quality, aesthetics and long-term value. Aurora's most common specification.</div>
+        </div>
+        <div class="tier-card prem">
+          <div class="tier-card-eyebrow">Premium</div>
+          <div class="tier-card-price" id="tc-p">$—</div>
+          <div class="tier-card-pp" id="tc-p-pp"></div>
+          <div class="tier-card-desc">Premium finishes, advanced ergonomics, and designer aesthetics.</div>
+        </div>
+      </div>
+      <div class="result-disclaimer">Estimates include furniture supply and professional installation. Excludes GST. Pricing is indicative only — based on placeholder data pending Aurora's confirmed price list.</div>
+      <div class="next-steps">
+        <div class="ns-card"><div class="ns-icon"><i class="ti ti-mail"></i></div><div class="ns-title">Check your email</div><div class="ns-body">Your estimate and Aurora's product brochure have been sent to your inbox.</div></div>
+        <div class="ns-card"><div class="ns-icon"><i class="ti ti-phone"></i></div><div class="ns-title">We'll be in touch</div><div class="ns-body">Our team will reach out within 1 business day to discuss your project.</div></div>
+        <div class="ns-card"><div class="ns-icon"><i class="ti ti-ruler-2"></i></div><div class="ns-title">Site visit & measure-up</div><div class="ns-body">We visit, measure up, and build your detailed specification — no guesswork.</div></div>
+        <div class="ns-card"><div class="ns-icon"><i class="ti ti-truck"></i></div><div class="ns-title">Aurora handles the rest</div><div class="ns-body">Order, manufacture, delivery and professional installation — all managed by us.</div></div>
+      </div>
+      <div class="result-btns">
+        <button class="btn-submit">Request a formal quote</button>
+        <button class="btn-back" onclick="go(0)">Start again</button>
+      </div>
+    </div>
+
+  </div><!-- /form-card -->
+
+  <!-- SIDEBAR -->
+  <div class="sidebar-card">
+    <div class="sb-title">Live estimate</div>
+    <div class="tier-row"><div class="tier-name"><span class="tier-dot" style="background:#94a3b8"></span>Budget-conscious</div><div class="tier-price" id="sb-b">Enter details</div><div class="tier-pp" id="sb-b-pp"></div></div>
+    <div class="tier-row"><div class="tier-name"><span class="tier-dot" style="background:#6f969b"></span>Mid-range</div><div class="tier-price" id="sb-m">—</div><div class="tier-pp" id="sb-m-pp"></div></div>
+    <div class="tier-row"><div class="tier-name"><span class="tier-dot" style="background:#e8a87c"></span>Premium</div><div class="tier-price" id="sb-p">—</div><div class="tier-pp" id="sb-p-pp"></div></div>
+    <div class="sb-disclaimer">Indicative only · incl. installation · excl. GST. Final quote based on site visit.</div>
+    <div class="sb-selections">
+      <div class="sb-sel-title">Your selections</div>
+      <div id="sel-list">Complete the form to see your summary here.</div>
+    </div>
+    <div class="sb-phone">
+      <i class="ti ti-phone" style="color:#6f969b;font-size:13px;vertical-align:-2px;margin-right:4px"></i>Prefer to talk?
+      <strong>(02) XXXX XXXX</strong>
+    </div>
+  </div>
+</div>
+
+<script>
+const P={budget:{desk:400,ss:900,chair:280,exec:600,lock:180,meet:3200,recep:2800,break:1800,screen:180,power:120,store:380,eot:280},mid:{desk:650,ss:1350,chair:480,exec:950,lock:320,meet:5500,recep:4500,break:3200,screen:280,power:180,store:580,eot:450},prem:{desk:900,ss:1800,chair:750,exec:1400,lock:480,meet:9000,recep:7500,break:5500,screen:420,power:260,store:780,eot:680}};
+const INST=0.12;
+
+function go(n){
+  document.querySelectorAll('.step-panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+  document.querySelectorAll('.step-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);t.classList.toggle('done',i<n)});
+  document.getElementById('prog').style.width=((n+1)/4*100)+'%';
+  if(n===3)showResult();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function tog(el,grp){
+  document.querySelectorAll('#'+grp+' .tog').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');upd();
+}
+
+function xtra(el){
+  el.classList.toggle('on');
+  el.querySelector('.extra-cb').textContent=el.classList.contains('on')?'✓':'';
+  upd();
+}
+
+function gV(id){return parseInt(document.getElementById(id).value)||0}
+function gTog(grp){const t=document.querySelector('#'+grp+' .tog.on');return t?t.textContent.trim():''}
+function gExtras(){return[...document.querySelectorAll('.extra.on')].map(e=>e.querySelector('.extra-label').textContent.trim())}
+
+function calcTier(tier){
+  const p=P[tier],staff=gV('f-staff');if(!staff)return 0;
+  const dk=gTog('g-desk');
+  const dP=dk.includes('Sit-stand')?p.ss:dk.includes('Mix')?Math.round((p.desk+p.ss)/2):p.desk;
+  const ck=gTog('g-chair');
+  const cP=ck.includes('Executive')?p.exec:ck.includes('Mix')?Math.round((p.chair+p.exec)/2):p.chair;
+  let v=staff*(dP+cP+p.store);
+  const ex=gExtras();
+  if(ex.some(e=>e.includes('Locker')))v+=staff*p.lock;
+  if(ex.some(e=>e.includes('Meeting')))v+=Math.ceil(staff/10)*p.meet;
+  if(ex.some(e=>e.includes('Reception')))v+=p.recep;
+  if(ex.some(e=>e.includes('Breakout')))v+=Math.ceil(staff/15)*p.break;
+  if(ex.some(e=>e.includes('Privacy')))v+=staff*p.screen;
+  if(ex.some(e=>e.includes('Power')))v+=staff*p.power;
+  if(ex.some(e=>e.includes('End-of-trip')))v+=p.eot;
+  return Math.round(v*(1+INST)/100)*100;
+}
+
+function fmt(n){return n?'$'+n.toLocaleString('en-AU'):'—'}
+function pp(n,s){return n&&s?fmt(Math.round(n/s/50)*50)+' per person':''}
+
+function upd(){
+  const s=gV('f-staff');
+  const b=calcTier('budget'),m=calcTier('mid'),pr=calcTier('prem');
+  [['b',b],['m',m],['p',pr]].forEach(([k,v])=>{
+    document.getElementById('sb-'+k).textContent=v?fmt(v):'—';
+    document.getElementById('sb-'+k+'-pp').textContent=pp(v,s);
+  });
+  const ex=gExtras(),dk=gTog('g-desk'),ck=gTog('g-chair'),ind=gTog('g-ind'),sz=gV('f-size');
+  let lines=[];
+  if(s)lines.push(s+' staff');
+  if(sz)lines.push(sz+'m²');
+  if(dk)lines.push(dk.split('(')[0].trim());
+  if(ck)lines.push(ck);
+  if(ex.length)lines.push(...ex);
+  if(ind)lines.push(ind);
+  document.getElementById('sel-list').innerHTML=lines.length?lines.map(l=>`<div style="display:flex;align-items:center;gap:5px"><i class="ti ti-check" style="font-size:11px;color:#6f969b"></i>${l}</div>`).join(''):'Complete the form to see your summary here.';
+}
+
+function showResult(){
+  const s=gV('f-staff'),sz=gV('f-size');
+  const b=calcTier('budget'),m=calcTier('mid'),pr=calcTier('prem');
+  document.getElementById('rp-staff').textContent=s?s+' staff':'—';
+  document.getElementById('rp-size').textContent=sz?sz+'m²':'—';
+  const ex=gExtras();
+  document.getElementById('rp-inc').textContent=ex.length?ex.slice(0,2).join(', ')+(ex.length>2?' +'+(ex.length-2):''):'Desks + chairs';
+  document.getElementById('rp-time').textContent=gTog('g-time')||'—';
+  [['b',b],['m',m],['p',pr]].forEach(([k,v])=>{
+    document.getElementById('tc-'+k).textContent=v?fmt(v):'On request';
+    document.getElementById('tc-'+k+'-pp').textContent=pp(v,s);
+  });
+}
+upd();
+</script>
+</body>
+</html>
