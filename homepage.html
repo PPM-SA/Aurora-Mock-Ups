@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurora Office Furniture — Homepage Mockup</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',Arial,sans-serif;background:#fff;color:#121e21}
+a{text-decoration:none}
+
+/* NAV */
+.nav{background:#121e21;padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logomark{width:30px;height:30px;background:#6f969b;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff}
+.nav-wordmark{color:#fff;font-size:15px;font-weight:700;letter-spacing:0.2px}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{color:rgba(255,255,255,0.68);font-size:13px;font-weight:500}
+.nav-links a:hover{color:#fff}
+.nav-phone{color:#6f969b !important;font-weight:600}
+.btn-nav{background:#6f969b;color:#fff !important;padding:9px 20px;border-radius:5px;font-size:13px;font-weight:700;transition:background 0.2s}
+.btn-nav:hover{background:#5a8288}
+
+/* BUTTONS */
+.btn-primary{background:#6f969b;color:#fff;font-size:14px;font-weight:700;padding:14px 26px;border-radius:6px;display:inline-block;transition:background 0.2s}
+.btn-primary:hover{background:#5a8288}
+.btn-outline{background:transparent;border:1.5px solid rgba(111,150,155,0.6);color:rgba(255,255,255,0.88);font-size:14px;font-weight:600;padding:13px 26px;border-radius:6px;display:inline-block;transition:border-color 0.2s,color 0.2s}
+.btn-outline:hover{border-color:#6f969b;color:#fff}
+.btn-outline-dark{background:transparent;border:1.5px solid #6f969b;color:#6f969b;font-size:13px;font-weight:600;padding:11px 22px;border-radius:6px;display:inline-block;transition:all 0.2s}
+.btn-outline-dark:hover{background:#6f969b;color:#fff}
+
+/* HERO */
+.hero{background:#121e21;padding:72px 60px 68px;display:flex;gap:48px;align-items:center}
+.hero-left{flex:1;min-width:0}
+.hero-eyebrow{color:#6f969b;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';display:inline-block;width:24px;height:2px;background:#6f969b;border-radius:2px}
+.hero-h1{font-size:42px;font-weight:700;line-height:1.12;margin-bottom:24px;letter-spacing:-0.5px;background:linear-gradient(100deg,#ffffff 0%,#9fc4c8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{color:rgba(255,255,255,0.58);font-size:15px;line-height:1.78;margin-bottom:36px;max-width:500px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.hero-locs{display:flex;gap:24px}
+.hero-loc{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,0.38);font-size:12px;font-weight:500}
+.hero-loc-dot{width:6px;height:6px;border-radius:50%;background:#6f969b;flex-shrink:0}
+.hero-right{width:320px;flex-shrink:0}
+.img-box{background:#1c424d;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;border:1px solid rgba(111,150,155,0.2)}
+.img-box svg{opacity:0.2}
+.img-box span{font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+
+/* TRUST BAR */
+.trust-bar{background:#1c424d;padding:0 60px;display:flex;border-bottom:1px solid rgba(255,255,255,0.06)}
+.trust-item{flex:1;display:flex;align-items:center;gap:12px;padding:20px 0;border-right:1px solid rgba(255,255,255,0.07)}
+.trust-item:last-child{border-right:none}
+.trust-item:not(:first-child){padding-left:24px}
+.trust-icon{width:34px;height:34px;background:rgba(111,150,155,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.trust-icon svg{color:#6f969b}
+.trust-title{color:#fff;font-size:12px;font-weight:700;line-height:1.3}
+.trust-sub{color:rgba(255,255,255,0.4);font-size:11px;margin-top:2px}
+
+/* TICKER */
+.ticker-wrap{background:#0f1a1d;padding:14px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,0.04)}
+.ticker-inner{display:flex;width:max-content;animation:ticker 30s linear infinite}
+.ticker-inner:hover{animation-play-state:paused}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{display:flex;align-items:center;gap:32px;padding:0 32px;white-space:nowrap}
+.ticker-sep{width:4px;height:4px;border-radius:50%;background:#6f969b;opacity:0.4;flex-shrink:0}
+.ticker-name{color:rgba(255,255,255,0.32);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase}
+
+/* SECTIONS */
+.sec{padding:72px 60px}
+.sec-white{background:#ffffff}
+.sec-light{background:#f4f6f6}
+.sec-navy{background:#121e21}
+.sec-teal{background:#1c424d}
+.sec-eyebrow{color:#6f969b;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-eyebrow::before{content:'';display:inline-block;width:18px;height:2px;background:#6f969b;border-radius:2px}
+.sec-h2{
+ color:#121e21;font-size:28px;font-weight:700;line-height:1.25;margin-bottom:16px;letter-spacing:-0.3px;background:linear-gradient(100deg,#121e21 0%,#1c424d 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-h2-light{background:linear-gradient(100deg,#ffffff 0%,#9fc4c8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-body{color:#5a6a6d;font-size:14px;line-height:1.78;max-width:600px}
+.sec-body-light{color:rgba(255,255,255,0.55)}
+
+/* ABOUT */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+.stat-card{background:#fff;border:1px solid #e4ecee;border-radius:8px;padding:22px 20px}
+.stat-num{font-size:30px;font-weight:700;color:#121e21;line-height:1}
+.stat-label{font-size:12px;color:#7a9298;margin-top:5px;font-weight:500}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+.svc-card{background:#fff;border:1px solid #e4ecee;border-radius:10px;padding:26px 20px;transition:border-color 0.2s}
+.svc-card:hover{border-color:#6f969b}
+.svc-icon{width:42px;height:42px;background:#e8f2f3;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.svc-title{font-size:13px;font-weight:700;color:#121e21;margin-bottom:8px}
+.svc-body{font-size:12px;color:#7a9298;line-height:1.65}
+
+/* PROCESS */
+.process-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:32px;position:relative}
+.process-row::before{content:'';position:absolute;top:19px;left:15px;right:15px;height:1px;background:#e4ecee;z-index:0}
+.proc-step{position:relative;z-index:1;padding:0 12px 0 0}
+.proc-num{width:38px;height:38px;border-radius:50%;background:#6f969b;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:14px;border:3px solid #f4f6f6}
+.proc-title{font-size:12px;font-weight:700;color:#121e21;margin-bottom:5px}
+.proc-body{font-size:11px;color:#7a9298;line-height:1.55}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+.proj-card{border-radius:10px;overflow:hidden;border:1px solid #e4ecee;background:#fff;transition:border-color 0.2s}
+.proj-card:hover{border-color:#6f969b}
+.proj-img{height:140px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.proj-sector{display:inline-block;background:#e8f2f3;color:#1c424d;font-size:10px;font-weight:700;padding:3px 9px;border-radius:4px;margin-bottom:7px;letter-spacing:0.3px}
+.proj-name{font-size:13px;font-weight:700;color:#121e21;margin-bottom:5px}
+.proj-desc{font-size:11px;color:#7a9298;line-height:1.55}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.team-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:10px;overflow:hidden;transition:border-color 0.2s}
+.team-card:hover{border-color:rgba(111,150,155,0.4)}
+.team-photo{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(255,255,255,0.04)}
+.team-name{color:#fff;font-size:14px;font-weight:700;margin-bottom:4px}
+.team-role{color:#6f969b;font-size:12px;font-weight:500}
+
+/* INDUSTRIES */
+.industries-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:32px}
+.ind-card{background:#fff;border:1px solid #e4ecee;border-radius:10px;padding:24px 16px;text-align:center;transition:border-color 0.2s}
+.ind-card:hover{border-color:#6f969b}
+.ind-icon{font-size:28px;color:#6f969b;margin-bottom:12px}
+.ind-name{font-size:12px;font-weight:700;color:#121e21;line-height:1.4}
+
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.review-card{background:#fff;border:1px solid #e4ecee;border-radius:10px;padding:22px 20px}
+.review-stars{color:#e8a598;font-size:14px;margin-bottom:10px;letter-spacing:2px}
+.review-text{font-size:13px;color:#5a6a6d;line-height:1.7;margin-bottom:14px;font-style:italic}
+.review-author{font-size:11px;font-weight:700;color:#121e21}
+.review-source{font-size:11px;color:#7a9298;margin-top:1px}
+
+/* PRICE GUIDE SECTION */
+.priceguide-sec{background:#121e21;padding:72px 60px}
+.priceguide-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.pg-eyebrow{color:#e8a598;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.pg-eyebrow::before{content:'';display:inline-block;width:18px;height:2px;background:#e8a598;border-radius:2px}
+.pg-h2{font-size:26px;font-weight:700;line-height:1.25;margin-bottom:16px;letter-spacing:-0.3px;background:linear-gradient(100deg,#ffffff 0%,#9fc4c8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pg-sub{color:rgba(255,255,255,0.52);font-size:14px;line-height:1.75;margin-bottom:32px}
+.pg-trust-list{display:flex;flex-direction:column;gap:14px}
+.pg-trust-item{display:flex;align-items:center;gap:12px}
+.pg-trust-icon{width:32px;height:32px;background:rgba(111,150,155,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pg-trust-text{color:rgba(255,255,255,0.65);font-size:13px;font-weight:500}
+.pg-form{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:32px}
+.pg-form-title{color:#fff;font-size:16px;font-weight:700;margin-bottom:6px}
+.pg-form-sub{color:rgba(255,255,255,0.45);font-size:12px;margin-bottom:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.form-group:last-of-type{margin-bottom:0}
+.form-label{color:rgba(255,255,255,0.6);font-size:11px;font-weight:600;letter-spacing:0.5px}
+.form-input{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:11px 14px;color:#fff;font-size:13px;font-family:inherit;outline:none;transition:border-color 0.2s}
+.form-input:focus{border-color:#6f969b;background:rgba(255,255,255,0.09)}
+.form-input::placeholder{color:rgba(255,255,255,0.25)}
+.form-select{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:11px 14px;color:rgba(255,255,255,0.75);font-size:13px;font-family:inherit;outline:none;transition:border-color 0.2s;-webkit-appearance:none;cursor:pointer}
+.form-select:focus{border-color:#6f969b}
+.form-select option{background:#1c424d;color:#fff}
+.btn-download{width:100%;background:#e8a598;color:#121e21;font-size:14px;font-weight:700;padding:15px 24px;border-radius:6px;border:none;cursor:pointer;font-family:inherit;margin-top:20px;transition:background 0.2s;letter-spacing:0.2px}
+.btn-download:hover{background:#dfa090}
+.form-disclaimer{color:rgba(255,255,255,0.28);font-size:11px;line-height:1.6;margin-top:12px;text-align:center}
+
+/* CTA BAND */
+.cta-band{background:#1c424d;padding:64px 60px;display:flex;align-items:center;justify-content:space-between;gap:48px;border-top:1px solid rgba(255,255,255,0.06)}
+.cta-band-eyebrow{color:#e8a598;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px}
+.cta-band-h2{font-size:26px;font-weight:700;margin-bottom:12px;line-height:1.25;background:linear-gradient(100deg,#ffffff 0%,#9fc4c8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-band-sub{color:rgba(255,255,255,0.52);font-size:14px;line-height:1.7;max-width:440px}
+.cta-btns{display:flex;gap:14px;flex-shrink:0}
+
+/* LOCATIONS */
+.locs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.loc-card{background:#fff;border:1px solid #e4ecee;border-radius:10px;padding:24px 20px;transition:border-color 0.2s}
+.loc-card:hover{border-color:#6f969b}
+.loc-badge{display:inline-block;background:#e8f2f3;color:#1c424d;font-size:10px;font-weight:700;padding:4px 10px;border-radius:4px;margin-bottom:12px;letter-spacing:0.3px}
+.loc-name{font-size:15px;font-weight:700;color:#121e21;margin-bottom:8px}
+.loc-detail{font-size:12px;color:#7a9298;line-height:1.9}
+.loc-link{color:#6f969b;font-size:12px;font-weight:700;margin-top:12px;display:inline-block}
+.loc-link:hover{color:#1c424d}
+
+/* FAQs */
+.faq-list{margin-top:28px;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:#fff;border:1px solid #e4ecee;border-radius:8px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:border-color 0.2s}
+.faq-item:hover{border-color:#6f969b}
+.faq-q{font-size:13px;font-weight:600;color:#121e21}
+.faq-chevron{color:#6f969b;font-size:16px;flex-shrink:0}
+
+/* FOOTER */
+.footer{background:#0a1416;padding:56px 60px 28px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand{}
+.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.footer-logomark{width:28px;height:28px;background:#6f969b;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.footer-wordmark{color:#fff;font-size:14px;font-weight:700}
+.footer-tagline{color:rgba(255,255,255,0.35);font-size:12px;line-height:1.75}
+.footer-col h4{color:rgba(255,255,255,0.4);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.footer-col a{display:block;color:rgba(255,255,255,0.5);font-size:12px;margin-bottom:10px;transition:color 0.2s}
+.footer-col a:hover{color:rgba(255,255,255,0.9)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:22px;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{color:rgba(255,255,255,0.22);font-size:11px}
+.footer-policy{display:flex;gap:20px}
+.footer-policy a{color:rgba(255,255,255,0.22);font-size:11px;transition:color 0.2s}
+.footer-policy a:hover{color:rgba(255,255,255,0.6)}
+
+.hero-logo-img{max-width:260px;height:auto;margin-bottom:24px}
+.priceguide-brochure{margin-top:28px;max-width:420px;width:100%;display:block;filter:drop-shadow(0 25px 45px rgba(0,0,0,.35))}
+.priceguide-inner{align-items:center!important}
+.pg-form{backdrop-filter:blur(10px)}
+.btn-primary:hover,.btn-nav:hover{background:#e8a598!important;color:#121e21!important}
+.proc-step:nth-child(3) .proc-num{background:#e8a598;color:#121e21}
+.ticker-wrap{background:#e8a598}
+.ticker-name{color:#121e21!important;opacity:.7}
+
+
+/* DEEP POLISH PASS */
+:root{
+ --navy:#121e21;
+ --dark-teal:#1c424d;
+ --teal:#6f969b;
+ --peach:#e8a598;
+}
+body{
+ background:#fff;
+}
+.hero{
+ background:
+ radial-gradient(circle at 80% 20%, rgba(232,165,152,.18), transparent 35%),
+ radial-gradient(circle at 20% 80%, rgba(111,150,155,.18), transparent 35%),
+ #121e21;
+}
+.hero-h1,
+.pg-h2,
+.cta-band-h2,
+.sec-h2-light{
+ color:#fff;
+ background:linear-gradient(90deg,#ffffff 0%, #9fc4c8 60%, #e8a598 100%)!important;
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+}
+.sec-h2{
+ color:#121e21;
+ background:linear-gradient(90deg,#121e21 0%, #1c424d 55%, #e8a598 100%)!important;
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+}
+.stat-card,.svc-card,.proj-card,.review-card,.loc-card,.ind-card{
+ box-shadow:0 10px 30px rgba(18,30,33,.05);
+}
+.stat-card:hover,.svc-card:hover,.proj-card:hover,.review-card:hover,.loc-card:hover,.ind-card:hover{
+ transform:translateY(-3px);
+ transition:.25s ease;
+ box-shadow:0 18px 45px rgba(18,30,33,.12);
+}
+.pg-form{
+ background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));
+ box-shadow:0 25px 60px rgba(0,0,0,.25);
+}
+.priceguide-sec{
+ background:
+ radial-gradient(circle at 15% 15%, rgba(111,150,155,.15), transparent 30%),
+ radial-gradient(circle at 90% 90%, rgba(232,165,152,.12), transparent 25%),
+ #121e21;
+}
+.pg-h2{font-size:34px!important;}
+.review-card{
+ position:relative;
+ overflow:hidden;
+}
+.review-card:before{
+ content:'';
+ position:absolute;
+ left:0;top:0;bottom:0;
+ width:4px;
+ background:#e8a598;
+}
+.btn-primary,.btn-download{
+ box-shadow:0 10px 25px rgba(232,165,152,.25);
+}
+.footer{
+ background:linear-gradient(180deg,#0a1416,#081012);
+}
+
+</style>
+
+<style id="premium-pass">
+.hero:before{
+content:'';position:absolute;inset:0;
+background:url('Copy-of-Copy-of-Copy-of-Aurora-Locker-Email-2025-08-29T113153.874-1-4-1-2048x1287.png.webp') center/cover;
+opacity:.08;mix-blend-mode:screen;
+}
+.hero{position:relative;overflow:hidden}
+.priceguide-brochure{
+transform:perspective(1200px) rotateY(-12deg) rotateZ(-2deg);
+max-width:500px!important;
+}
+.pg-trust-list{display:none!important;}
+.projects-grid{grid-template-columns:repeat(2,1fr)!important;gap:24px!important;}
+.proj-img{height:220px!important;}
+.hero-h1,.sec-h2,.pg-h2,.cta-band-h2{
+display:block!important;
+}
+</style>
+
+
+<style id="final-client-polish">
+/* Fix gradient heading rendering issues */
+.hero-h1,
+.sec-h2,
+.pg-h2,
+.cta-band-h2,
+.sec-h2-light{
+background:none !important;
+-webkit-text-fill-color:initial !important;
+color:#121e21 !important;
+}
+
+.hero-h1,
+.pg-h2,
+.cta-band-h2,
+.sec-h2-light{
+color:#ffffff !important;
+}
+
+.hero-h1{
+font-size:48px !important;
+line-height:1.08 !important;
+}
+
+.sec-h2,.pg-h2,.cta-band-h2{
+letter-spacing:-0.04em;
+}
+
+/* Constrain overall page width for premium feel */
+.hero,
+.sec,
+.priceguide-sec,
+.cta-band,
+.footer{
+padding-left:max(60px, calc((100vw - 1240px)/2 + 60px)) !important;
+padding-right:max(60px, calc((100vw - 1240px)/2 + 60px)) !important;
+}
+
+/* Softer, more premium cards */
+.stat-card,.svc-card,.proj-card,.review-card,.loc-card,.ind-card{
+border-radius:14px !important;
+}
+
+/* Better spacing */
+.sec{padding-top:88px !important;padding-bottom:88px !important;}
+.priceguide-sec{padding-top:96px !important;padding-bottom:96px !important;}
+
+/* Premium brochure */
+.priceguide-brochure{
+filter:drop-shadow(0 30px 60px rgba(0,0,0,.35)) !important;
+}
+
+/* Cleaner FAQ section */
+.faq-item{
+padding:20px 24px !important;
+}
+
+/* Subtle polish */
+.review-card:before{
+width:5px !important;
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-logomark">A</div>
+    <img src="Aurora-Main-Logotype-Tagline-Right-1-2.svg" alt="Aurora Office Furniture" style="height:30px;">
+  </div>
+  <div class="nav-links">
+    <a href="#">Products</a>
+    <a href="#">Services</a>
+    <a href="#">Projects</a>
+    <a href="#">Resources</a>
+    <a href="#">About</a>
+    <a href="#" class="nav-phone">(02) 6299 4637</a>
+    <a href="#" class="btn-nav">Get a Free Quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Aurora Office Furniture</div>
+    <h1 class="hero-h1">Australia's Commercial<br>Office Furniture Specialists</h1>
+    <p class="hero-sub">Serving government departments, businesses, interior designers and schools across Canberra, Sydney and Melbourne. Free 3D layouts, fast quotes, end-to-end installation.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Get a Free Quote</a>
+      <a href="#" class="btn-outline">Book a Free Consultation</a>
+    </div>
+    <div class="hero-locs">
+      <div class="hero-loc"><div class="hero-loc-dot"></div>Canberra</div>
+      <div class="hero-loc"><div class="hero-loc-dot"></div>Sydney</div>
+      <div class="hero-loc"><div class="hero-loc-dot"></div>Melbourne</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="img-box" style="height:300px;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      <span>Hero image</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </div>
+    <div>
+      <div class="trust-title">30+ years experience</div>
+      <div class="trust-sub">Since 1993</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div>
+      <div class="trust-title">Trusted by 4,000+ clients</div>
+      <div class="trust-sub">Govt, corporate &amp; education</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    </div>
+    <div>
+      <div class="trust-title">Free 3D design &amp; quote</div>
+      <div class="trust-sub">Space planning included</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    </div>
+    <div>
+      <div class="trust-title">On-time delivery</div>
+      <div class="trust-sub">Most orders 10 days or less</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+    </div>
+    <div>
+      <div class="trust-title">End-to-end service</div>
+      <div class="trust-sub">Planning to installation</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.22 6.22l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </div>
+    <div>
+      <div class="trust-title">After-sales support</div>
+      <div class="trust-sub">Dedicated post-install care</div>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENT TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <div class="ticker-item">
+      <span class="ticker-name">Electro Optic Systems</span><div class="ticker-sep"></div>
+      <span class="ticker-name">ACT Government</span><div class="ticker-sep"></div>
+      <span class="ticker-name">Goulburn Hospital</span><div class="ticker-sep"></div>
+      <span class="ticker-name">St John Ambulance</span><div class="ticker-sep"></div>
+      <span class="ticker-name">Department of Defence</span><div class="ticker-sep"></div>
+      <span class="ticker-name">NSW Health</span><div class="ticker-sep"></div>
+      <span class="ticker-name">Vectiq</span><div class="ticker-sep"></div>
+      <span class="ticker-name">Australia Post</span><div class="ticker-sep"></div>
+      <span class="ticker-name">University of Canberra</span><div class="ticker-sep"></div>
+      <span class="ticker-name">Electro Optic Systems</span><div class="ticker-sep"></div>
+      <span class="ticker-name">ACT Government</span><div class="ticker-sep"></div>
+      <span class="ticker-name">Goulburn Hospital</span><div class="ticker-sep"></div>
+      <span class="ticker-name">St John Ambulance</span><div class="ticker-sep"></div>
+      <span class="ticker-name">Department of Defence</span><div class="ticker-sep"></div>
+      <span class="ticker-name">NSW Health</span><div class="ticker-sep"></div>
+      <span class="ticker-name">Vectiq</span><div class="ticker-sep"></div>
+      <span class="ticker-name">Australia Post</span><div class="ticker-sep"></div>
+      <span class="ticker-name">University of Canberra</span><div class="ticker-sep"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="sec sec-light">
+  <div class="two-col">
+    <div>
+      <div class="sec-eyebrow">About Aurora</div>
+      <h2 class="sec-h2">30 Years of Commercial Office Furniture Expertise</h2>
+      <p class="sec-body">Since 1993, Aurora has completed 4,000+ commercial fitouts for government departments, businesses, schools and interior designers across Australia. We manage everything from space planning and product specification through to delivery and professional installation — so your project runs on time and on budget.</p>
+      <div style="margin-top:24px"><a href="#" class="btn-outline-dark">About Aurora</a></div>
+    </div>
+    <div class="img-box" style="height:280px;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      <span>About image</span>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num">30+</div><div class="stat-label">Years in business</div></div>
+    <div class="stat-card"><div class="stat-num">4,000+</div><div class="stat-label">Projects completed</div></div>
+    <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">States serviced</div></div>
+    <div class="stat-card"><div class="stat-num">5 ★</div><div class="stat-label">Google rating</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec sec-white">
+  <div class="sec-eyebrow">Services</div>
+  <h2 class="sec-h2">End-to-End Commercial Office Fitouts —<br>From Concept to Installed</h2>
+  <p class="sec-body">Aurora manages every stage of your office fitout — 3D space planning, product specification, custom manufacture, delivery and professional installation. Whether you're refitting a government building, corporate office or school, we reduce risk and remove the project management burden from your team.</p>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1c424d" stroke-width="2"><path d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11M8 10v11M16 10v11M12 10v11"/></svg></div>
+      <div class="svc-title">3D Space Planning</div>
+      <div class="svc-body">Free layouts and concept visuals before you commit to anything</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1c424d" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+      <div class="svc-title">Custom Manufacture</div>
+      <div class="svc-body">Melamine and custom finishes to your exact specification</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1c424d" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      <div class="svc-title">Supply &amp; Delivery</div>
+      <div class="svc-body">In-stock and made-to-order, most delivered in 10 days or less</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1c424d" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+      <div class="svc-title">Professional Installation</div>
+      <div class="svc-body">Full fitout, furniture removal and dedicated after-sales support</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec sec-light">
+  <div class="sec-eyebrow">How it works</div>
+  <h2 class="sec-h2">Seamless service from consultation to move-in</h2>
+  <p class="sec-body">Our proven 5-step process is designed to deliver the right solution quickly, with expert guidance at every stage.</p>
+  <div class="process-row">
+    <div class="proc-step">
+      <div class="proc-num">1</div>
+      <div class="proc-title">Free consultation</div>
+      <div class="proc-body">Tell us your space, timeline and budget</div>
+    </div>
+    <div class="proc-step">
+      <div class="proc-num">2</div>
+      <div class="proc-title">3D design &amp; quote</div>
+      <div class="proc-body">Layout concepts and itemised pricing</div>
+    </div>
+    <div class="proc-step">
+      <div class="proc-num">3</div>
+      <div class="proc-title">Site visit</div>
+      <div class="proc-body">On-site measure and installation planning</div>
+    </div>
+    <div class="proc-step">
+      <div class="proc-num">4</div>
+      <div class="proc-title">Order &amp; deliver</div>
+      <div class="proc-body">Dedicated project manager, on-time delivery guaranteed</div>
+    </div>
+    <div class="proc-step">
+      <div class="proc-num">5</div>
+      <div class="proc-title">Love your workspace</div>
+      <div class="proc-body">Professional installation and post-care support</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec sec-white">
+  <div class="sec-eyebrow">Recent work</div>
+  <h2 class="sec-h2">Office Fitout Projects — Canberra, Sydney &amp; Melbourne</h2>
+  <p class="sec-body">From government fitouts to corporate and healthcare environments — built to last, delivered on time.</p>
+  <div class="projects-grid">
+    <div class="proj-card">
+      <div class="proj-img" style="background:#1c424d;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span style="font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:1px;text-transform:uppercase;font-weight:600">Project image</span>
+      </div>
+      <div style="padding:14px 16px">
+        <div class="proj-sector">Defence Technology</div>
+        <div class="proj-name">Electro Optic Systems</div>
+        <div class="proj-desc">Tech-ready sit-stand workspace with integrated power and cable management, ACT</div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img" style="background:#0f3a4a;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span style="font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:1px;text-transform:uppercase;font-weight:600">Project image</span>
+      </div>
+      <div style="padding:14px 16px">
+        <div class="proj-sector">Healthcare</div>
+        <div class="proj-name">Goulburn Hospital</div>
+        <div class="proj-desc">Full ward and administration office fitout, Goulburn NSW</div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img" style="background:#162630;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span style="font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:1px;text-transform:uppercase;font-weight:600">Project image</span>
+      </div>
+      <div style="padding:14px 16px">
+        <div class="proj-sector">Government / NFP</div>
+        <div class="proj-name">St John Ambulance</div>
+        <div class="proj-desc">Multi-location office furniture supply and installation</div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img" style="background:#253040;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span style="font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:1px;text-transform:uppercase;font-weight:600">Project image</span>
+      </div>
+      <div style="padding:14px 16px">
+        <div class="proj-sector">Corporate</div>
+        <div class="proj-name">Vectiq Pty Ltd</div>
+        <div class="proj-desc">Contemporary corporate office fitout, ACT</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:28px;text-align:center"><a href="#" class="btn-outline-dark">Explore all projects</a></div>
+</section>
+
+<!-- TEAM -->
+<section class="sec sec-navy">
+  <div class="sec-eyebrow" style="color:#6f969b">Our team</div>
+  <h2 class="sec-h2 sec-h2-light">Expert-guided fitouts, delivered fast and done right</h2>
+  <p class="sec-body sec-body-light">We assist in selecting the right products for your space, recommend finishes, sizes and layouts, and manage the entire process from start to finish.</p>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo" style="height:150px;">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span style="font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:1px;text-transform:uppercase;font-weight:600">Team photo</span>
+      </div>
+      <div style="padding:16px 18px">
+        <div class="team-name">Dean Grace</div>
+        <div class="team-role">Commercial Furniture Consultant</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo" style="height:150px;">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span style="font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:1px;text-transform:uppercase;font-weight:600">Team photo</span>
+      </div>
+      <div style="padding:16px 18px">
+        <div class="team-name">Pawan Sapkota</div>
+        <div class="team-role">Customer Service &amp; Quotes</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo" style="height:150px;">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span style="font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:1px;text-transform:uppercase;font-weight:600">Team photo</span>
+      </div>
+      <div style="padding:16px 18px">
+        <div class="team-name">Brad Grace</div>
+        <div class="team-role">Customer Service &amp; Quotes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="sec sec-white">
+  <div class="sec-eyebrow">Industries</div>
+  <h2 class="sec-h2">Who we work with across Canberra, Sydney &amp; Melbourne</h2>
+  <div class="industries-grid">
+    <div class="ind-card">
+      <div class="ind-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="1.5"><path d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11M8 10v11M16 10v11M12 10v11"/></svg>
+      </div>
+      <div class="ind-name">Government &amp; Public Sector</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div class="ind-name">Healthcare</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="ind-name">Education</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      </div>
+      <div class="ind-name">Businesses &amp; Corporate</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <div class="ind-name">Architects &amp; Designers</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec sec-light">
+  <div class="sec-eyebrow">Client reviews</div>
+  <h2 class="sec-h2">What our clients say</h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Outstanding service from start to finish. The team was professional, the furniture arrived on time and the installation was flawless. Couldn't recommend Aurora more highly."</p>
+      <div class="review-author">Operations Manager</div>
+      <div class="review-source">ACT Government</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Brad and the team went above and beyond. The 3D planning service saved us a lot of time and made approvals so much easier. Great quality furniture too."</p>
+      <div class="review-author">Facilities Manager</div>
+      <div class="review-source">Corporate Client, Sydney</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"We've used Aurora across multiple school projects. Reliable, responsive and the furniture holds up — exactly what you need in a high-use school environment."</p>
+      <div class="review-author">Business Manager</div>
+      <div class="review-source">ACT Independent School</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE GUIDE -->
+<section class="priceguide-sec">
+  <div class="priceguide-inner">
+    <div>
+      <div class="pg-eyebrow">Free download</div>
+      <h2 class="pg-h2">Get transparent pricing<br>before you commit</h2>
+      <p class="pg-sub">Download our commercial furniture price guide — product pricing, lead times and configuration options, all in one place. No obligation, no sales call required.</p>
+      <img class="priceguide-brochure" src="Copy-of-Copy-of-Copy-of-Aurora-Locker-Email-2025-08-29T113153.874-1-4-1-2048x1287.png.webp" alt="Aurora Commercial Furniture Price Guide"><div class="pg-trust-list">
+        <div class="pg-trust-item">
+          <div class="pg-trust-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="pg-trust-text"></div>
+        </div>
+        <div class="pg-trust-item">
+          <div class="pg-trust-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/></svg>
+          </div>
+          <div class="pg-trust-text"></div>
+        </div>
+        <div class="pg-trust-item">
+          <div class="pg-trust-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="pg-trust-text"></div>
+        </div>
+      </div>
+    </div>
+    <div class="pg-form">
+      <div class="pg-form-title">Download the Price Guide</div>
+      <div class="pg-form-sub">Fill in your details below for instant access</div>
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Full name</label>
+          <input type="text" class="form-input" placeholder="Jane Smith">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Business name</label>
+          <input type="text" class="form-input" placeholder="Acme Pty Ltd">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Business type</label>
+        <select class="form-select">
+          <option value="" disabled selected>Select your sector</option>
+          <option>Corporate Office</option>
+          <option>Government &amp; Public Sector</option>
+          <option>Education</option>
+          <option>Healthcare</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label">Email address</label>
+        <input type="email" class="form-input" placeholder="jane@company.com.au">
+      </div>
+      <button class="btn-download">Download Price Guide →</button>
+      <div class="form-disclaimer">By downloading you agree to receive occasional product updates from Aurora Office Furniture. Unsubscribe anytime.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div>
+    <div class="cta-band-eyebrow">Get started</div>
+    <h2 class="cta-band-h2">Ready to transform your workspace?</h2>
+    <p class="cta-band-sub">Speak with an office furniture specialist. Free consultation, free 3D layout, fast quote. Serving Canberra, Sydney and Melbourne.</p>
+  </div>
+  <div class="cta-btns">
+    <a href="#" class="btn-primary">Get a Free Quote</a>
+    <a href="#" class="btn-outline">Book a Free Consultation</a>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="sec sec-white">
+  <div class="sec-eyebrow">Our locations</div>
+  <h2 class="sec-h2">Showroom, dispatch and installation across Australia</h2>
+  <div class="locs-grid">
+    <div class="loc-card">
+      <div class="loc-badge">Head Office · Showroom</div>
+      <div class="loc-name">Canberra / ACT</div>
+      <div class="loc-detail">50 Aurora Ave, Queanbeyan East NSW 2620<br>Dean — (02) 8294 0731<br>dean@auroraoffice.com.au<br>Mon–Fri 8am–4pm</div>
+      <a href="#" class="loc-link">Get directions →</a>
+    </div>
+    <div class="loc-card">
+      <div class="loc-badge">Dispatch &amp; Installation</div>
+      <div class="loc-name">Sydney / NSW</div>
+      <div class="loc-detail">10 Carrington Rd, Marrickville NSW 2204<br>Pawan — (02) 9269 9992<br>pawan@auroraoffice.com.au<br>Mon–Fri 8am–4pm</div>
+      <a href="#" class="loc-link">Get directions →</a>
+    </div>
+    <div class="loc-card">
+      <div class="loc-badge">Dispatch &amp; Installation</div>
+      <div class="loc-name">Melbourne / VIC</div>
+      <div class="loc-detail">13 Constance Ct, Epping VIC 3076<br>Brad — (03) 9310 3083<br>brad@auroraoffice.com.au<br>Mon–Fri 8am–4pm</div>
+      <a href="#" class="loc-link">Get directions →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQs -->
+<section class="sec sec-light">
+  <div class="sec-eyebrow">FAQs</div>
+  <h2 class="sec-h2">FAQs About Office Furniture, Fitouts &amp; Our Process</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">What industries does Aurora Office Furniture work with?</div>
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do you provide complete office fitout services or furniture supply only?</div>
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How does the Aurora design, quote and installation process work?</div>
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How quickly can Aurora deliver and install a workplace project?</div>
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can Aurora create custom furniture and tailored workspace solutions?</div>
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f969b" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </div>
+  <div style="margin-top:20px;text-align:center"><a href="#" style="color:#6f969b;font-size:13px;font-weight:700;">Explore all FAQs →</a></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-logomark">A</div>
+        <div class="footer-wordmark">Aurora Office Furniture</div>
+      </div>
+      <div class="footer-tagline">Australia's commercial office furniture specialists. 30+ years. 4,000+ projects. Canberra, Sydney and Melbourne.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Sit-Stand Desks</a>
+      <a href="#">Workplace Lockers</a>
+      <a href="#">Office Seating</a>
+      <a href="#">Storage</a>
+      <a href="#">Acoustic Solutions</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">3D Design &amp; Planning</a>
+      <a href="#">Professional Installation</a>
+      <a href="#">Custom Manufacture</a>
+      <a href="#">Projects</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">Blog</a>
+      <a href="#">FAQs</a>
+      <a href="#">Visit Our Showroom</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Aurora Office Furniture. All rights reserved.</div>
+    <div class="footer-policy">
+      <a href="#">Terms &amp; Conditions</a>
+      <a href="#">Returns Policy</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
